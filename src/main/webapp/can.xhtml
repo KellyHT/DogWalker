@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Canes:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Can</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="id" value="Id " styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="id" styleClass="form-control"
+				value="#{canController.can.idCan}" required="true" />
+			<h:outputLabel for="nombreCan" value="Nombres "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="nombreCan"
+				styleClass="form-control" value="#{canController.can.nombre}"
+				maxlength="30" required="true" />
+			<br />
+			<p:outputLabel for="cboRaza" value="Raza" />
+			<br />
+			<p:selectOneMenu id="cboRaza" value="#{canController.can.raza}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItems value="#{canController.listaRazas}" var="d"
+					itemLabel="#{d.nombre}" itemValue="#{d}" />
+			</p:selectOneMenu>
+
+			<p:selectOneMenu id="cboCaracter"
+				value="#{canController.can.caracter}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItems value="#{canController.listaCaracteres}" var="d"
+					itemLabel="#{d.nombre}" itemValue="#{d}" />
+			</p:selectOneMenu>
+			<br />
+			<h:outputLabel for="tamañoCan" value="Tamaño "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="tamañoCan"
+				styleClass="form-control" value="#{canController.can.tamano}"
+				maxlength="30" required="true" />
+			<br />
+				<br />
+			<h:outputLabel for="descripcionCan" value="Descripcion "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="descripcionCan"
+				styleClass="form-control" value="#{canController.can.descripcion}"
+				maxlength="30" required="true" />
+			<br />
+			
+			<h:outputLabel for="fechaCan" value="Fecha de Nacimiento "
+				styleClass="control-label" />
+
+			<p:calendar id="fechaCan" pattern="dd/MM/yyyy"
+				value="#{canController.can.fechaNacimiento}" showOn="button"
+				timeZone="UTC" required="true">
+			</p:calendar>
+			<br />
+				
+			<p:outputLabel for="cboDueno" value="Dueno" />
+			<br />
+			<p:selectOneMenu id="cboDueno" value="#{canController.can.dueno}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItems value="#{canController.listaduenos}" var="d"
+					itemLabel="#{d.nombre}" itemValue="#{d}" />
+			</p:selectOneMenu>
+			<br />
+			<p:commandButton value="Grabar"
+				actionListener="#{canController.insertar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listCan?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listCan?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>

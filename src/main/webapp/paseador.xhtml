@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Paseadors:
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Paseador</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="id" value="Id " styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="id" styleClass="form-control"
+				value="#{paseadorController.paseador.id}" required="true" />
+
+			<h:outputLabel for="nombrePaseador" value="Nombres "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="nombrePaseador"
+				styleClass="form-control"
+				value="#{paseadorController.paseador.nombre}" maxlength="30"
+				required="true" />
+
+			<h:outputLabel for="apellidoPaseador" value="Apellidos"
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="apellidoPaseador"
+				styleClass="form-control"
+				value="#{paseadorController.paseador.apellido}" maxlength="30"
+				required="true" />
+
+			<h:outputLabel for="correoPaseador" value="Correo"
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="correoPaseador"
+				styleClass="form-control"
+				value="#{paseadorController.paseador.correo}" maxlength="30"
+				required="true" />
+
+
+			<h:outputLabel for="contrasenaPaseador" value="Contrasena"
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="contrasenaPaseador"
+				styleClass="form-control"
+				value="#{paseadorController.paseador.contrasena}" maxlength="30"
+				required="true" />
+			<br />
+
+
+			<br />
+			<h:outputLabel for="fechaNacimiento" value="Fecha de Nacimiento"
+				styleClass="control-label" />
+			<br />
+			<p:calendar id="fechaNacimientoPaseador" pattern="dd/MM/yyyy"
+				value="#{paseadorController.paseador.fechaDeNacimiento}"
+				showOn="button" timeZone="UTC" required="true">
+			</p:calendar>
+			<br />
+
+
+			<p:outputLabel for="cboDistrito" value="Distrito" />
+			<br />
+			<p:selectOneMenu id="cboDistrito"
+				value="#{paseadorController.paseador.distrito}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItems value="#{paseadorController.listaDistritos}" var="d"
+					itemLabel="#{d.nombre}" itemValue="#{d}" />
+			</p:selectOneMenu>
+			<br />
+			<h:outputLabel for="direccion" value="Direccion"
+				styleClass="control-label" />
+			<br />
+			<p:inputText autocomplete="off" id="direccionPaseador"
+				styleClass="form-control"
+				value="#{paseadorController.paseador.direccion}" maxlength="30"
+				required="true" />
+			<br />
+			<br />
+			<h:outputLabel for="monto" value="Monto por servicio"
+				styleClass="control-label" />
+			<br />
+			<p:inputText autocomplete="off" id="montoServicioPaseador"
+				styleClass="form-control"
+				value="#{paseadorController.paseador.montoServicio}" maxlength="30"
+				required="true" />
+			<br />
+			<h:outputLabel for="Biografia" value="Biografia"
+				styleClass="control-label" />
+			<br />
+			<p:inputText autocomplete="off" id="biografiaPaseador"
+				styleClass="form-control"
+				value="#{paseadorController.paseador.biografia}" maxlength="30"
+				required="true" />
+			<br />
+
+			<p:outputLabel for="cboPersonalidad" value="Personalidad" />
+			<br />
+			<p:selectOneMenu id="cboPersonalidad"
+				value="#{paseadorController.paseador.personalidad}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItems value="#{paseadorController.listaPersonalidades}"
+					var="d" itemLabel="#{d.nombre}" itemValue="#{d}" />
+			</p:selectOneMenu>
+
+			<br />
+
+			<p:commandButton value="Grabar"
+				actionListener="#{paseadorController.insertar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listPaseador?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listPaseador?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>

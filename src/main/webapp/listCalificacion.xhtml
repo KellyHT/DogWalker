@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+		.:Listado de Calificaciones:.
+	</ui:define>
+
+	<ui:define name="titleCont">
+		<span>Calificaciones</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+
+			<div class="row">
+				<div class="col-sm-8 text-right">
+					<div class="form-group box-main-btn">
+						<span style="display: block; height: 30px;"></span>
+						<p:commandButton value="Nuevo"
+							action="#{calificacionController.nuevoCalificacion()}"
+							styleClass="btn btn-primary ajax=false" />
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group table-responsive box-table-class">
+						<p:dataTable id="lstCalificacion" var="calificacion"
+							value="#{calificacionController.listaCalificaciones}"
+							paginator="true" paginatorPosition="top"
+							rowsPerPageTemplate="10,20,30,40,50" rows="10"
+							styleClass="table table-bordered"
+							emptyMessage="No existen registros" rowIndexVar="item"
+							style="margin-bottom:0">
+
+							<p:column headerText="Id" sortBy="#{calificacion.idCalificacion}">
+								<h:outputText value="#{calificacion.idCalificacion}" />
+							</p:column>
+
+							<p:column headerText="Comentario"
+								sortBy="#{calificacion.comentario}">
+								<h:outputText value="#{calificacion.comentario}" />
+							</p:column>
+
+							<p:column headerText="Puntuacion"
+								sortBy="#{calificacion.puntuacion}">
+								<h:outputText value="#{calificacion.puntuacion}" />
+							</p:column>
+
+							<p:column headerText="Dueno"
+								sortBy="#{calificacion.dueno.nombre}">
+								<h:outputText value="#{calificacion.dueno.nombre}" />
+							</p:column>
+							<p:column headerText="Paseador"
+								sortBy="#{calificacion.paseador.nombre}">
+								<h:outputText value="#{calificacion.paseador.nombre}" />
+							</p:column>
+
+							<p:column headerText="Operación" exportable="false">
+								<h:commandLink action="listCalificacion" value="Eliminar"
+									actionListener="#{calificacionController.eliminar(calificacion)}" />
+							</p:column>
+
+						</p:dataTable>
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+	</ui:define>
+
+</ui:composition>
+</html>
