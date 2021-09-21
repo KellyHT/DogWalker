@@ -34,6 +34,7 @@ public class Calificacion implements Serializable{
 	private Paseador paseador;
 
 	public Calificacion() {
+		//de la rrama kelly prueba
 		super();
 	}
 
