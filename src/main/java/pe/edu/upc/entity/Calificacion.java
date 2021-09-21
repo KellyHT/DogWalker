@@ -35,7 +35,6 @@ public class Calificacion implements Serializable{
 
 	public Calificacion() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Calificacion(int idCalificacion, String comentario, int puntuacion, Dueno dueno, Paseador paseador) {
