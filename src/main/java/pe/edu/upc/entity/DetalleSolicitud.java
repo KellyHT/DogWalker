@@ -31,6 +31,12 @@ public class DetalleSolicitud implements Serializable {
 	public DetalleSolicitud() {
 		super();
 		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stub
+
+		// TODO Auto-generated constructor stub
+
+		// TODO Auto-generated constructor stub
+
 	}
 
 	public DetalleSolicitud(int idDetalle, Can can, pe.edu.upc.entity.Solicitud solicitud) {
