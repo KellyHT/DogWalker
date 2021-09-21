@@ -1,135 +1,144 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
 
-<ui:composition template="master.xhtml">
 
-	<ui:define name="title">
-        .:Registro de Paseadores:
-    </ui:define>
+<h:head>
+	<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
+		rel="stylesheet" />
+	<link rel="stylesheet" href="resources/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="resources/css/bootstrap-datetimepicker.min.css" />
+	<link rel="stylesheet" href="resources/css/style.css" />
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</h:head>
 
-	<ui:define name="titleCont">
-		<span>Paseador</span>
-	</ui:define>
-
-	<ui:define name="content">
+<h:body>
+	<h:panelGroup layout="block" styleClass="registration-form">
 		<h:form>
-			<h:outputLabel for="id" value="Id " styleClass="control-label" />
 
-			<p:inputText autocomplete="off" id="id" styleClass="form-control"
+			<div class="form-icon">
+				<span><i class="icon icon-user"></i></span>
+			</div>
+
+			<div class="row">
+				<div class="form-group col-sm-6">
+					<h:inputText type="text" class="form-control item"
+						autocomplete="off" id="nombrePaseador" pt:placeholder="Nombre"
+						value="#{paseadorController.paseador.nombre}" required="true" />
+				</div>
+				<div class="form-group col-sm-6">
+					<h:inputText type="text" class="form-control item"
+						id="apellidoPaseador" pt:placeholder="Apellidos"
+						value="#{paseadorController.paseador.apellido}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<h:inputText type="text" class="form-control item"
+					id="correoPaseador" pt:placeholder="email"
+					value="#{paseadorController.paseador.correo}" />
+			</div>
+			<div class="form-group">
+				<h:inputText type="text" class="form-control item"
+					id="contrasenaPaseador" pt:placeholder="contraseña"
+					value="#{paseadorController.paseador.contrasena}" />
+			</div>
+
+
+			<div class="row">
+				<div class="form-group col-sm-6">
+					<div class=" form group date" id="id_0">
+						<p:calendar id="fechaMotor" pattern="dd/MM/yyyy"
+							value="#{paseadorController.paseador.fechaDeNacimiento}"
+							timeZone="UTC" required="true"
+							pt:placeholder="Fecha de nacimiento">
+						</p:calendar>
+					</div>
+				</div>
+
+				<div class="form-group col-sm-6">
+					<h:selectOneMenu id="cboDistrito" class="form-control itemselect"
+						value="#{paseadorController.paseador.distrito}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Distrito" itemValue="#{null}" />
+						<f:selectItems value="#{paseadorController.listaDistritos}"
+							var="d" itemLabel="#{d.nombre}" itemValue="#{d}" />
+					</h:selectOneMenu>
+
+				</div>
+			</div>
+
+			<div class="form-group">
+				<h:inputText type="text" class="form-control item"
+					id="direccionPaseador" pt:placeholder="Dirección"
+					value="#{paseadorController.paseador.direccion}" />
+			</div>
+
+			<div class="form-group">
+				<h:inputText type="text" class="form-control item"
+					id="biografiaPaseador" pt:placeholder="Descripción"
+					value="#{paseadorController.paseador.biografia}" />
+			</div>
+
+
+
+			<div class="form-group">
+				<h:selectOneMenu id="cboPersonalidad"
+					class="form-control itemselect"
+					value="#{paseadorController.paseador.personalidad}"
+					converter="omnifaces.SelectItemsConverter">
+					<f:selectItems value="#{paseadorController.listaPersonalidades}"
+						var="d" itemLabel="#{d.nombre}" itemValue="#{d}" />
+				</h:selectOneMenu>
+			</div>
+
+
+
+			<div class="form-group">
+				<h:inputText type="text" class="form-control item"
+					id="montoServicioPaseador" pt:placeholder="Monto"
+					value="#{paseadorController.paseador.montoServicio}" />
+			</div>
+
+
+
+
+	<h:panelGroup layout="block" styleClass="form-group">
+				<h:commandButton value="Crear Cuenta"
+					actionListener="#{paseadorController.insertar()}"
+					styleClass=" btn btn-block create-account "
+					action="listPaseador?faces-redirect=true" />
+
+			</h:panelGroup>
+		
+
+			<p:inputText type ="hidden" autocomplete="off" id="id" styleClass="form-control"
 				value="#{paseadorController.paseador.id}" required="true" />
-
-			<h:outputLabel for="nombrePaseador" value="Nombres "
-				styleClass="control-label" />
-
-			<p:inputText autocomplete="off" id="nombrePaseador"
-				styleClass="form-control"
-				value="#{paseadorController.paseador.nombre}" maxlength="30"
-				required="true" />
-
-			<h:outputLabel for="apellidoPaseador" value="Apellidos"
-				styleClass="control-label" />
-
-			<p:inputText autocomplete="off" id="apellidoPaseador"
-				styleClass="form-control"
-				value="#{paseadorController.paseador.apellido}" maxlength="30"
-				required="true" />
-
-			<h:outputLabel for="correoPaseador" value="Correo"
-				styleClass="control-label" />
-
-			<p:inputText autocomplete="off" id="correoPaseador"
-				styleClass="form-control"
-				value="#{paseadorController.paseador.correo}" maxlength="30"
-				required="true" />
-
-
-			<h:outputLabel for="contrasenaPaseador" value="Contrasena"
-				styleClass="control-label" />
-
-			<p:inputText autocomplete="off" id="contrasenaPaseador"
-				styleClass="form-control"
-				value="#{paseadorController.paseador.contrasena}" maxlength="30"
-				required="true" />
-			<br />
-
-
-			<br />
-			<h:outputLabel for="fechaNacimiento" value="Fecha de Nacimiento"
-				styleClass="control-label" />
-			<br />
-			<p:calendar id="fechaNacimientoPaseador" pattern="dd/MM/yyyy"
-				value="#{paseadorController.paseador.fechaDeNacimiento}"
-				showOn="button" timeZone="UTC" required="true">
-			</p:calendar>
-			<br />
-
-
-			<p:outputLabel for="cboDistrito" value="Distrito" />
-			<br />
-			<p:selectOneMenu id="cboDistrito"
-				value="#{paseadorController.paseador.distrito}"
-				converter="omnifaces.SelectItemsConverter">
-				<f:selectItems value="#{paseadorController.listaDistritos}" var="d"
-					itemLabel="#{d.nombre}" itemValue="#{d}" />
-			</p:selectOneMenu>
-			<br />
-			<h:outputLabel for="direccion" value="Direccion"
-				styleClass="control-label" />
-			<br />
-			<p:inputText autocomplete="off" id="direccionPaseador"
-				styleClass="form-control"
-				value="#{paseadorController.paseador.direccion}" maxlength="30"
-				required="true" />
-			<br />
-			<br />
-			<h:outputLabel for="monto" value="Monto por servicio"
-				styleClass="control-label" />
-			<br />
-			<p:inputText autocomplete="off" id="montoServicioPaseador"
-				styleClass="form-control"
-				value="#{paseadorController.paseador.montoServicio}" maxlength="30"
-				required="true" />
-			<br />
-			<h:outputLabel for="Biografia" value="Biografia"
-				styleClass="control-label" />
-			<br />
-			<p:inputText autocomplete="off" id="biografiaPaseador"
-				styleClass="form-control"
-				value="#{paseadorController.paseador.biografia}" maxlength="30"
-				required="true" />
-			<br />
-
-			<p:outputLabel for="cboPersonalidad" value="Personalidad" />
-			<br />
-			<p:selectOneMenu id="cboPersonalidad"
-				value="#{paseadorController.paseador.personalidad}"
-				converter="omnifaces.SelectItemsConverter">
-				<f:selectItems value="#{paseadorController.listaPersonalidades}"
-					var="d" itemLabel="#{d.nombre}" itemValue="#{d}" />
-			</p:selectOneMenu>
-
-			<br />
-
-			<p:commandButton value="Grabar"
-				actionListener="#{paseadorController.insertar()}"
-				styleClass="btn btn-primary " update="@form"
-				action="listPaseador?faces-redirect=true" />
-			<p:commandButton value="Cancelar"
-				action="listPaseador?faces-redirect=true" immediate="true"
-				styleClass="btn btn-default" ajax="false" />
-
-			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
-
-
 		</h:form>
-	</ui:define>
 
-	<ui:define name="footerCont">
+	</h:panelGroup>
+	<script src="resources/js/script.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/jquery.min.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/popper.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/bootstrap.min.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/moment-with-locales.min.js"
+		type="text/javascript" xml:space="preserve"></script>
+	<script src="resources/js/bootstrap-datetimepicker.min.js"
+		type="text/javascript" xml:space="preserve"></script>
+	<script src="resources/js/main.js" type="text/javascript"
+		xml:space="preserve"></script>
+</h:body>
 
-	</ui:define>
-</ui:composition>
 </html>
