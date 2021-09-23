@@ -29,63 +29,31 @@
 			</div>
 
 			<div class="row">
-				<div class="form-group col-sm-6">
+				<div class="form-group col-sm-12">
 					<h:inputText type="text" class="form-control item"
-						autocomplete="off" id="nombreDueno" pt:placeholder="Nombre"
+						autocomplete="off" id="correoDueno" pt:placeholder="Correo"
 						value="#{duenoController.dueno.nombre}" required="true" />
 				</div>
-				<div class="form-group col-sm-6">
-					<h:inputText type="text" class="form-control item"
-						id="apellidoDueno" pt:placeholder="Apellidos"
+
+				<div class="form-group col-sm-12">
+					<h:inputSecret type="password" class="form-control item"
+						id="contrasenaDueno" pt:placeholder="Contraseña"
 						value="#{duenoController.dueno.apellido}" />
+					<span class="bbb-input"></span>
 				</div>
 			</div>
 
-			<div class="form-group">
-				<h:inputText type="text" class="form-control item" id="email"
-					pt:placeholder="email" value="#{duenoController.dueno.correo}" />
+			<div class="text-center p-t-115">
+				<a class="txt2" href="#"> ¿Olvidaste tu contraseña? </a>
 			</div>
-			<div class="form-group">
-				<h:inputText type="text" class="form-control item" id="pasword"
-					pt:placeholder="contraseña"
-					value="#{duenoController.dueno.contrasena}" />
+			<div class="text-center p-t-115">
+				<span class="txt1"> ¿Aún no tienes cuenta? </span> <a class="txt2"
+					href="#"> Regístrate </a>
 			</div>
-
-
-
-			<div class="row">
-				<div class="form-group col-sm-6">
-					<div class=" form group date" id="id_0">
-						<p:calendar id="fechaMotor" pattern="dd/MM/yyyy"
-							value="#{duenoController.dueno.fechaDeNacimiento}" timeZone="UTC"
-							required="true" pt:placeholder="Fecha de nacimiento">
-						</p:calendar>
-					</div>
-				</div>
-
-			<div class="form-group col-sm-6">
-					<h:selectOneMenu id="cboDistrito" class="form-control itemselect"
-						value="#{duenoController.distritos}"
-						converter="omnifaces.SelectItemsConverter">
-						<f:selectItem itemLabel="Distrito" itemValue="" />
-						<f:selectItems value="#{duenoController.distritos}" var="d"
-							itemLabel="#{d.nombre}" itemValue="#{d}" />
-					</h:selectOneMenu>
-					
-
-				</div>
-			</div>
-
-			<div class="form-group">
-				<h:inputText type="text" class="form-control item" id="Dirección"
-					pt:placeholder="Dirección"
-					value="#{duenoController.dueno.direccion}" />
-			</div>
-
 
 			<h:panelGroup layout="block" styleClass="form-group">
-				<h:commandButton value="Crear Cuenta"
-					actionListener="#{duenoController.saveDueno()}"
+				<h:commandButton value="Iniciar Sesión"
+					actionListener="#{duenoController.insertar()}"
 					styleClass=" btn btn-block create-account "
 					action="listDueno?faces-redirect=true" />
 

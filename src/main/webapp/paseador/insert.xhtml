@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+
+	<ui:composition template="/WEB-INF/templates/master.xhtml">
+		<ui:define name="content">
+			<h:form id="frm">
+				<p:growl id="men" />
+
+				<p:toolbar>
+					<f:facet name="right">
+						<p:commandButton value="Guardar" icon="ui-icon-disk" 
+						action="#{paseadorController.savePaseador()}" ajax="false"/>
+
+						<p:commandButton value="Regresar" icon="ui-icon-disk"
+						  action="#{paseadorController.listPaseador()}"
+						  immediate="true"
+						  ajax="false"/>
+					</f:facet>
+				</p:toolbar>
+
+
+				<p:panelGrid id="panGridPaseador" columns="2" style="width:100%">
+					<p:outputLabel value="Paseadoro:" for="txtName" />
+					<p:inputText id="txtName" required="true" maxlength="45"
+						value="#{paseadorController.paseador.nombre}" />
+					<p:outputLabel value="Proveedor" for="cboSupplier" />
+					<p:selectOneMenu id="cboSupplier" required="true" effect="drop"
+						value="#{paseadorController.distrito}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Seleccione una opción"
+							noSelectionOption="true" itemValue="" />
+						<f:selectItems value="#{paseadorController.distritos}"
+							var="distrito" itemLabel="#{distrito.nombre}"
+							itemValue="#{distrito}" />
+					</p:selectOneMenu>
+					
+					<p:outputLabel value="Categoria" for="txtCategory" />
+					<p:inputText id="txtCategory" required="true" maxlength="45"
+						value="#{paseadorController.paseador.apellido}" />
+					<p:outputLabel value="Precio Unitario" for="txtUnitPrice" />
+					<p:inputText id="txtUnitPrice" required="true" maxlength="45"
+						value="#{paseadorController.paseador.biografia}" />
+					<p:outputLabel value="Stock" for="txtStock" />
+					<p:inputText id="txtStock" required="true" maxlength="45"
+						value="#{paseadorController.paseador.correo}" />
+				</p:panelGrid>
+				<br></br>
+
+
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+
+</body>
+</html>
