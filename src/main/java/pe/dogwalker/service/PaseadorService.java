@@ -22,7 +22,7 @@ public class PaseadorService implements Serializable{
 	public Long insert(Paseador paseador) throws Exception {
 		return paseadorRepository.insert(paseador);
 	}
-	
+	@Transactional
 	public Long update(Paseador paseador) throws Exception {
 		return paseadorRepository.update(paseador);
 	}

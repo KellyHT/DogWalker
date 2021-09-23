@@ -5,48 +5,45 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
 
 import pe.dogwalker.model.entity.Can;
-import pe.dogwalker.model.entity.Dueno;
+import pe.dogwalker.model.entity.Raza;
 import pe.dogwalker.service.CanService;
-import pe.dogwalker.service.DuenoService;
+import pe.dogwalker.service.RazaService;
 import pe.dogwalker.util.Message;
 
-
-
 @Named
-@RequestScoped
+@SessionScoped
+public class CanController implements Serializable{
 
-public class CanController implements Serializable {
-
-private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	
 	@Inject
 	private CanService canService;
 	
 	@Inject
-	private DuenoService duenoService;
+	private RazaService razaService;
 	
 	private Can can;
 	private List<Can> cans;
 	private Can canSelect;
 	
-	private Dueno dueno;
-	private List<Dueno> duenos;
+	private Raza raza;
+	private List<Raza> razas;
 	
 	private String filterName;
 	
 	@PostConstruct
 	public void init() {
 		can = new Can();
-		dueno = new Dueno();
+		raza = new Raza();
 		cans = new ArrayList<Can>();
-		duenos = new ArrayList<Dueno>();
+		razas = new ArrayList<Raza>();
 		
 		getAllCans();
 	}
@@ -62,7 +59,7 @@ private static final long serialVersionUID = 1L;
 	
 	public String newCan() {
 		try {
-			this.duenos = duenoService.findAll();
+			this.razas = razaService.findAll();
 			resetForm();
 		} catch (Exception e) {
 		}
@@ -79,17 +76,19 @@ private static final long serialVersionUID = 1L;
 	}
 	
 	public String saveCan() {
+
 		String view = "";
 		try {
 			if (can.getIdCan() != null) 
 			{
-				can.setDueno(dueno);
+				Message.messageInfo("Ingresseeee update");
+				can.setRaza(raza);
 				canService.update(can);
 				Message.messageInfo("Registro Actualizado Correctamente");
 			}
 			else 
 			{
-				can.setDueno(dueno);
+				can.setRaza(raza);
 				canService.insert(can);
 				Message.messageInfo("Registro Insertado Correctamente");				
 			}
@@ -117,7 +116,7 @@ private static final long serialVersionUID = 1L;
 			}
 		} 
 		catch (Exception e) {
-			Message.messageError("Error  en cano: " + e.getMessage());
+			Message.messageError("Error  en dueño: " + e.getMessage());
 		}
 		return view;
 	}
@@ -183,23 +182,23 @@ private static final long serialVersionUID = 1L;
 	}
 
 
-	public Dueno getDueno() {
-		return dueno;
+	public Raza getRaza() {
+		return raza;
 	}
 
 
-	public void setDueno(Dueno dueno) {
-		this.dueno = dueno;
+	public void setRaza(Raza raza) {
+		this.raza = raza;
 	}
 
 
-	public List<Dueno> getDuenos() {
-		return duenos;
+	public List<Raza> getRazas() {
+		return razas;
 	}
 
 
-	public void setDuenos(List<Dueno> duenos) {
-		this.duenos = duenos;
+	public void setRazas(List<Raza> razas) {
+		this.razas = razas;
 	}
 
 

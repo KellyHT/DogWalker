@@ -42,7 +42,7 @@ public class PaseadorRepository implements  Serializable{
 	
 	public List<Paseador> findByName(String name) throws Exception {
 		List<Paseador> paseadores = new ArrayList<>(); 
-		TypedQuery<Paseador> query = em.createQuery("SELECT p FROM Paseador p WHERE p.name LIKE ?1", Paseador.class);
+		TypedQuery<Paseador> query = em.createQuery("SELECT p FROM Paseador p WHERE p.nombre LIKE ?1", Paseador.class);
 		query.setParameter(1, "%" + name + "%");
 		paseadores = query.getResultList();
 		return paseadores;		

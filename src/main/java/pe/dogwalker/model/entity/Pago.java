@@ -1,6 +1,5 @@
 package pe.dogwalker.model.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -13,8 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 @Entity
 @Table(name = "Pago")
-public class Pago  implements Serializable{
-	private static final long serialVersionUID = 1L;
+public class Pago  {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private Long idPago;
@@ -38,22 +36,7 @@ public class Pago  implements Serializable{
 	@Column(name="cardNumero", nullable=false, length=25)
 	private String cardNumero; 
 	private int cvv;
-	public Pago() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public Pago(Long idPago, Date fechaPago, Float montoFinal, Tarjeta tarjeta, Solicitud solicitud, String name,
-			String cardNumero, int cvv) {
-		super();
-		this.idPago = idPago;
-		this.fechaPago = fechaPago;
-		this.montoFinal = montoFinal;
-		this.tarjeta = tarjeta;
-		this.solicitud = solicitud;
-		this.name = name;
-		this.cardNumero = cardNumero;
-		this.cvv = cvv;
-	}
+	
 	public Long getIdPago() {
 		return idPago;
 	}
@@ -102,8 +85,5 @@ public class Pago  implements Serializable{
 	public void setCvv(int cvv) {
 		this.cvv = cvv;
 	}
-	
-	
-	
-	
+
 }

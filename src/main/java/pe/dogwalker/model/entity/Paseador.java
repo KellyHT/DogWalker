@@ -1,6 +1,5 @@
 package pe.dogwalker.model.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -14,8 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Paseador")
-public class Paseador implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class Paseador  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -109,8 +107,5 @@ public class Paseador implements Serializable {
 		this.montoServicio = montoServicio;
 	}
 
-	
-	
-	
 	
 }

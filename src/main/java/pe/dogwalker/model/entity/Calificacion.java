@@ -1,7 +1,5 @@
 package pe.dogwalker.model.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,9 +11,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Calificacion")
-public class Calificacion implements Serializable{
+public class Calificacion{
 	
-	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private Long idCalificacion;
@@ -32,19 +29,6 @@ public class Calificacion implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="idPaseador", nullable=false)
 	private Paseador paseador;
-
-	public Calificacion() {
-		super();
-	}
-
-	public Calificacion(Long idCalificacion, String comentario, int puntuacion, Dueno dueno, Paseador paseador) {
-		super();
-		this.idCalificacion = idCalificacion;
-		this.comentario = comentario;
-		this.puntuacion = puntuacion;
-		this.dueno = dueno;
-		this.paseador = paseador;
-	}
 
 	public Long getIdCalificacion() {
 		return idCalificacion;

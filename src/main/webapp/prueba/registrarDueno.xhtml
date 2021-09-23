@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+<h:head>
+	<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
+		rel="stylesheet" />
+	<link rel="stylesheet" href="resources/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="resources/css/bootstrap-datetimepicker.min.css" />
+	<link rel="stylesheet" href="resources/css/style.css" />
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</h:head>
+
+<h:body>
+	<h:panelGroup layout="block" styleClass="registration-form">
+		<h:form>
+
+			<div class="form-icon">
+				<span><i class="icon icon-user"></i></span>
+			</div>
+
+			<div class="row">
+				<div class="form-group col-sm-6">
+					<h:inputText type="text" class="form-control item"
+						autocomplete="off" id="nombreDueno" pt:placeholder="Nombre"
+						value="#{duenoController.dueno.nombre}" required="true" />
+				</div>
+				<div class="form-group col-sm-6">
+					<h:inputText type="text" class="form-control item"
+						id="apellidoDueno" pt:placeholder="Apellidos"
+						value="#{duenoController.dueno.apellido}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<h:inputText type="text" class="form-control item" id="email"
+					pt:placeholder="email" value="#{duenoController.dueno.correo}" />
+			</div>
+			<div class="form-group">
+				<h:inputText type="text" class="form-control item" id="pasword"
+					pt:placeholder="contraseña"
+					value="#{duenoController.dueno.contrasena}" />
+			</div>
+
+			<div class="row">
+				<div class="form-group col-sm-6">
+					<div class=" form group date" id="id_0">
+						<p:calendar id="fechaMotor" pattern="dd/MM/yyyy"
+							value="#{duenoController.dueno.fechaDeNacimiento}" timeZone="UTC"
+							required="true" pt:placeholder="Fecha de nacimiento">
+						</p:calendar>
+					</div>
+				</div>
+
+				<div class="form-group col-sm-6">
+					<h:selectOneMenu id="cboDistrito" class="form-control itemselect"
+						value="#{duenoController.distritos}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Distrito" itemValue="" />
+						<f:selectItems value="#{duenoController.distritos}" var="d"
+							itemLabel="#{d.nombre}" itemValue="#{d}" />
+					</h:selectOneMenu>
+					
+
+				</div>
+			</div>
+
+			<div class="form-group">
+				<h:inputText type="text" class="form-control item" id="Dirección"
+					pt:placeholder="Dirección"
+					value="#{duenoController.dueno.direccion}" />
+			</div>
+
+
+			<h:panelGroup layout="block" styleClass="form-group">
+				<h:commandButton value="Crear Cuenta"
+					actionListener="#{duenoController.saveDueno()}"
+					styleClass=" btn btn-block create-account "
+					action="listDueno?faces-redirect=true" />
+
+			</h:panelGroup>
+
+
+			<p:inputText autocomplete="off" id="id" styleClass="form-control"
+				value="#{duenoController.dueno.id}" type="hidden" required="true" />
+
+		</h:form>
+
+	</h:panelGroup>
+	<script src="resources/js/script.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/jquery.min.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/popper.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/bootstrap.min.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/moment-with-locales.min.js"
+		type="text/javascript" xml:space="preserve"></script>
+	<script src="resources/js/bootstrap-datetimepicker.min.js"
+		type="text/javascript" xml:space="preserve"></script>
+	<script src="resources/js/main.js" type="text/javascript"
+		xml:space="preserve"></script>
+</h:body>
+
+</html>

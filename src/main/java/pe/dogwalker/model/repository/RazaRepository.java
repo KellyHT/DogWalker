@@ -43,7 +43,7 @@ public class RazaRepository implements Serializable {
 	
 	public List<Raza> findByName(String name) throws Exception {
 		List<Raza> lista = new ArrayList<>(); 
-		TypedQuery<Raza> query = em.createQuery("SELECT p FROM Raza p WHERE p.name LIKE ?1", Raza.class);
+		TypedQuery<Raza> query = em.createQuery("SELECT p FROM Raza p WHERE p.nombre LIKE ?1", Raza.class);
 		query.setParameter(1, "%" + name + "%");
 		lista = query.getResultList();
 		return lista;		

@@ -1,7 +1,5 @@
 package pe.dogwalker.model.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,10 +10,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "DetalleSolicitud")
-public class DetalleSolicitud implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
-	
+public class DetalleSolicitud {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idDetalle;
@@ -28,17 +24,6 @@ public class DetalleSolicitud implements Serializable {
 	@JoinColumn(name = "idSolicitud", nullable = false)
 	private Solicitud solicitud;
 
-	public DetalleSolicitud() {
-		super();
-
-	}
-
-	public DetalleSolicitud(Long idDetalle, Can can, pe.dogwalker.model.entity.Solicitud solicitud) {
-		super();
-		this.idDetalle = idDetalle;
-		this.can = can;
-		this.solicitud = solicitud;
-	}
 
 	public Long getIdDetalle() {
 		return idDetalle;

@@ -23,6 +23,7 @@ public class DuenoService implements Serializable {
 		return duenoRepository.insert(dueno);
 	}
 	
+	@Transactional
 	public Long update(Dueno dueno) throws Exception {
 		return duenoRepository.update(dueno);
 	}
