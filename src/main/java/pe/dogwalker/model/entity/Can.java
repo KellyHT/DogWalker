@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Can {
-	
+	//ATRIBUTOSSSSSSSS KELLY
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private Long idCan;
