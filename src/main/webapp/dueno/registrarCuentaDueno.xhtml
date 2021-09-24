@@ -63,15 +63,15 @@
 					</div>
 				</div>
 
-			<div class="form-group col-sm-6">
-			<h:selectOneMenu i="cboDistrito" class="form-control itemselect"
+				<div class="form-group col-sm-6">
+					<h:selectOneMenu i="cboDistrito" class="form-control itemselect"
 						value="#{duenoController.distrito}"
 						converter="omnifaces.SelectItemsConverter">
 						<f:selectItem itemLabel="Distrito" itemValue="" />
 						<f:selectItems value="#{duenoController.distritos}" var="distrito"
 							itemLabel="#{distrito.nombre}" itemValue="#{distrito}" />
 					</h:selectOneMenu>
-					
+
 
 				</div>
 			</div>
@@ -81,10 +81,10 @@
 					pt:placeholder="Dirección"
 					value="#{duenoController.dueno.direccion}" />
 			</div>
-			
-			<h:commandButton value="Crear Cuenta" styleClass=" btn btn-block create-account "
-						  action="#{duenoController.saveDueno()}"
-						  ajax="false"/>
+
+			<h:commandButton value="Crear Cuenta"
+				styleClass=" btn btn-block create-account "
+				action="#{duenoController.saveDueno()}" ajax="false" />
 		</h:form>
 
 	</h:panelGroup>
