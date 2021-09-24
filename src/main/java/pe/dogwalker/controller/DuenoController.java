@@ -63,7 +63,7 @@ public class DuenoController implements Serializable{
 			resetForm();
 		} catch (Exception e) {
 		}
-		return "/dueno/insert";
+		return "/dueno/registrarCuentaDueno";
 	}
 	
 	public void resetForm() {
