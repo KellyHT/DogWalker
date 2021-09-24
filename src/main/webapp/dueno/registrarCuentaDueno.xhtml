@@ -1,74 +1,118 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
-
-<h:head></h:head>
-<body>
-
-	<ui:composition template="/WEB-INF/templates/master.xhtml">
-		<ui:define name="content">
-			<h:form id="frm">
-				<p:growl id="men" />
-
-				<p:toolbar>
-					<f:facet name="right">
-						<p:commandButton value="Guardar" icon="ui-icon-disk"
-							action="#{duenoController.saveDueno()}" ajax="false" />
-
-						<p:commandButton value="Regresar" icon="ui-icon-disk"
-							action="#{duenoController.listDueno()}" immediate="true"
-							ajax="false" />
-					</f:facet>
-				</p:toolbar>
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
 
 
-				<p:panelGrid id="panGridProduct" columns="2" style="width:100%">
+<h:head>
+	<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
+		rel="stylesheet" />
+	<link rel="stylesheet" href="resources/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="resources/css/bootstrap-datetimepicker.min.css" />
+	<link rel="stylesheet" href="resources/css/style.css" />
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</h:head>
 
-					<p:outputLabel value="Nombre:  " for="txtName" />
+<h:body>
+	<h:panelGroup layout="block" styleClass="registration-form">
+		<h:form>
 
-					<p:inputText id="txtName" required="true" maxlength="45"
-						value="#{duenoController.dueno.nombre}" />
-					<p:outputLabel value="Apellido" for="txtApellido" />
-					<p:inputText id="txtApellido" required="true" maxlength="45"
+			<div class="form-icon">
+				<span><i class="icon icon-user"></i></span>
+			</div>
+
+			<div class="row">
+				<div class="form-group col-sm-6">
+					<h:inputText type="text" class="form-control item"
+						autocomplete="off" id="nombreDueno" pt:placeholder="Nombre"
+						value="#{duenoController.dueno.nombre}" required="true" />
+				</div>
+				<div class="form-group col-sm-6">
+					<h:inputText type="text" class="form-control item"
+						id="apellidoDueno" pt:placeholder="Apellidos"
 						value="#{duenoController.dueno.apellido}" />
-						
-							<p:outputLabel value="Correo" for="txtCorreo" />
-					<p:inputText id="txtCorreo" required="true" maxlength="45"
-						value="#{duenoController.dueno.correo}" />
-					<p:outputLabel value="Contraseña" for="txtContrasena" />
-					<p:inputText id="txtContrasena" required="true" maxlength="45"
-						value="#{duenoController.dueno.contrasena}" />
-					<p:outputLabel value="Distrito" for="cboDistrito" />
-					<p:selectOneMenu id="cboDistrito" required="true" effect="drop"
-						value="#{duenoController.distrito}"
+				</div>
+			</div>
+
+			<div class="form-group">
+				<h:inputText type="text" class="form-control item" id="email"
+					pt:placeholder="email" value="#{duenoController.dueno.correo}" />
+			</div>
+			<div class="form-group">
+				<h:inputText type="text" class="form-control item" id="pasword"
+					pt:placeholder="contraseña"
+					value="#{duenoController.dueno.contrasena}" />
+			</div>
+
+
+
+			<div class="row">
+				<div class="form-group col-sm-6">
+
+					<div class=" form group date" id="id_0">
+						<p:calendar id="fechaMotor" pattern="dd/MM/yyyy"
+							value="#{duenoController.dueno.fechaDeNacimiento}" timeZone="UTC"
+							required="true" pt:placeholder="Fecha de nacimiento">
+						</p:calendar>
+					</div>
+				</div>
+
+
+				<div class="form-group col-sm-6">
+					<h:selectOneMenu id="cboDistrito" class="form-control itemselect"
+						value="#{duenoController.dueno.distrito}"
 						converter="omnifaces.SelectItemsConverter">
-						<f:selectItem itemLabel="Seleccione una opción"
-							noSelectionOption="true" itemValue="" />
-						<f:selectItems value="#{duenoController.distritos}" var="distrito"
-							itemLabel="#{distrito.nombre}" itemValue="#{distrito}" />
-					</p:selectOneMenu>
+						<f:selectItem itemLabel="Distrito" itemValue="#{null}" />
+						<f:selectItems value="#{duenoController.listaDistritos}" var="d"
+							itemLabel="#{d.nombre}" itemValue="#{d}" />
+					</h:selectOneMenu>
 
-					<p:outputLabel value="Direccion" for="txtDireccion" />
-					<p:inputText id="txtDireccion" required="true" maxlength="45"
-						value="#{duenoController.dueno.direccion}" />
-				
-					<p:outputLabel value="fecha de Nacimiento" for="txtContrasena" />
-					<p:calendar id="fechaNacimiento" pattern="dd/MM/yyyy"
-						value="#{duenoController.dueno.fechaDeNacimiento}" timeZone="UTC"
-						required="true">
-					</p:calendar>
+				</div>
+			</div>
 
-				</p:panelGrid>
-				<br></br>
+			<div class="form-group">
+				<h:inputText type="text" class="form-control item" id="Dirección"
+					pt:placeholder="Dirección"
+					value="#{duenoController.dueno.direccion}" />
+			</div>
 
 
+			<h:panelGroup layout="block" styleClass="form-group">
+				<h:commandButton value="Crear Cuenta"
+					actionListener="#{duenoController.insertar()}"
+					styleClass=" btn btn-block create-account "
+					action="listDueno?faces-redirect=true" />
 
-			</h:form>
-		</ui:define>
-	</ui:composition>
+			</h:panelGroup>
 
-</body>
+
+			<p:inputText autocomplete="off" id="id" styleClass="form-control"
+				value="#{duenoController.dueno.id}" type="hidden" required="true" />
+
+		</h:form>
+
+	</h:panelGroup>
+	<script src="resources/js/script.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/jquery.min.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/popper.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/bootstrap.min.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/moment-with-locales.min.js"
+		type="text/javascript" xml:space="preserve"></script>
+	<script src="resources/js/bootstrap-datetimepicker.min.js"
+		type="text/javascript" xml:space="preserve"></script>
+	<script src="resources/js/main.js" type="text/javascript"
+		xml:space="preserve"></script>
+</h:body>
+
 </html>
