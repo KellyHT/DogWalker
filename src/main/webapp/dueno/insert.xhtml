@@ -5,7 +5,20 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head></h:head>
+<h:head>
+
+
+<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
+		rel="stylesheet" />
+	<link rel="stylesheet" href="../resources/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="../resources/css/bootstrap-datetimepicker.min.css" />
+	<link rel="stylesheet" href="../resources/css/style.css" />
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+</h:head>
 <body>
 
 	<ui:composition template="/WEB-INF/templates/master.xhtml">
@@ -17,6 +30,7 @@
 					<f:facet name="right">
 						<p:commandButton value="Guardar" icon="ui-icon-disk"
 							action="#{duenoController.saveDueno()}" ajax="false" />
+							
 
 						<p:commandButton value="Regresar" icon="ui-icon-disk"
 							action="#{duenoController.listDueno()}" immediate="true"
@@ -42,7 +56,7 @@
 					<p:inputText id="txtContrasena" required="true" maxlength="45"
 						value="#{duenoController.dueno.contrasena}" />
 					<p:outputLabel value="Distrito" for="cboDistrito" />
-					<p:selectOneMenu id="cboDistrito" required="true" effect="drop"
+					<p:selectOneMenu i="cboDistrito" required="true" effect="drop"
 						value="#{duenoController.distrito}"
 						converter="omnifaces.SelectItemsConverter">
 						<f:selectItem itemLabel="Seleccione una opción"
