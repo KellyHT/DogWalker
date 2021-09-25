@@ -18,7 +18,7 @@ import pe.dogwalker.util.Message;
 @Named
 @SessionScoped
 public class CalificacionController implements Serializable {
-
+///HOLAAAA
 	/*
 	private static final long serialVersionUID = 1L;
 

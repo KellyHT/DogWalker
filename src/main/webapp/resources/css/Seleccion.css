@@ -7,12 +7,29 @@ body{
 }
 
 .registration-form form{
-    background-color: #fff;
+      background-color: #fff;
     max-width: 600px;
     margin: auto;
     padding: 50px 70px;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+}
+
+.create-type {
+    font-weight: bold;
+    color: black;
+    font-size: 22px;
+}
+.cambios form{
+	 background-color: #fff;
+    max-width: 1200px;
+    margin: auto;
+    padding: 50px 70px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
 }
 

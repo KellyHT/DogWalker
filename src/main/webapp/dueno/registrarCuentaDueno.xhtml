@@ -5,17 +5,17 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core ">
 
 
 <h:head>
 	<link
 		href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
-		rel="stylesheet" />
-	<link rel="stylesheet" href="resources/css/bootstrap.min.css" />
+		rel="stylesheet " />
+	<link rel="stylesheet " href="../resources/css/bootstrap.min.css" />
 	<link rel="stylesheet"
-		href="resources/css/bootstrap-datetimepicker.min.css" />
-	<link rel="stylesheet" href="resources/css/style.css" />
+		href="../resources/css/bootstrap-datetimepicker.min.css" />
+	<link rel="stylesheet" href="../resources/css/style.css" />
 	<link rel="stylesheet"
 		href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 </h:head>
@@ -31,22 +31,22 @@
 			<div class="row">
 				<div class="form-group col-sm-6">
 					<h:inputText type="text" class="form-control item"
-						autocomplete="off" id=" nombreDueno" pt:placeholder="Nombre"
+						autocomplete="off" i=" nombreDueno" pt:placeholder="Nombre"
 						value="#{duenoController.dueno.nombre}" required="true" />
 				</div>
 				<div class="form-group col-sm-6">
 					<h:inputText type="text" class="form-control item"
-						id="apellidoDueno" pt:placeholder="Apellidos"
+						i="apellidoDueno" pt:placeholder="Apellidos"
 						value="#{duenoController.dueno.apellido}" />
 				</div>
 			</div>
 
 			<div class="form-group">
-				<h:inputText type="text" class="form-control item" id="email"
+				<h:inputText type="text" class="form-control item" i="email"
 					pt:placeholder="email" value="#{duenoController.dueno.correo}" />
 			</div>
 			<div class="form-group">
-				<h:inputText type="text" class="form-control item" id="pasword"
+				<h:inputText type="text" class="form-control item" i="pasword"
 					pt:placeholder="contraseña"
 					value="#{duenoController.dueno.contrasena}" />
 			</div>
@@ -63,15 +63,15 @@
 					</div>
 				</div>
 
-			<div class="form-group col-sm-6">
-					<h:selectOneMenu id="cboDistrito" class="form-control itemselect"
-						value="#{duenoController.distritos}"
+				<div class="form-group col-sm-6">
+					<h:selectOneMenu i="cboDistrito" class="form-control itemselect"
+						value="#{duenoController.distrito}"
 						converter="omnifaces.SelectItemsConverter">
 						<f:selectItem itemLabel="Distrito" itemValue="" />
-						<f:selectItems value="#{duenoController.distritos}" var="d"
-							itemLabel="#{d.nombre}" itemValue="#{d}" />
+						<f:selectItems value="#{duenoController.distritos}" var="distrito"
+							itemLabel="#{distrito.nombre}" itemValue="#{distrito}" />
 					</h:selectOneMenu>
-					
+
 
 				</div>
 			</div>
@@ -82,19 +82,9 @@
 					value="#{duenoController.dueno.direccion}" />
 			</div>
 
-
-			<h:panelGroup layout="block" styleClass="form-group">
-				<h:commandButton value="Crear Cuenta"
-					actionListener="#{duenoController.saveDueno()}"
-					styleClass=" btn btn-block create-account "
-					action="listDueno?faces-redirect=true" />
-
-			</h:panelGroup>
-
-
-			<p:inputText autocomplete="off" id="id" styleClass="form-control"
-				value="#{duenoController.dueno.id}" type="hidden" required="true" />
-
+			<h:commandButton value="Crear Cuenta"
+				styleClass=" btn btn-block create-account "
+				action="#{duenoController.saveDueno()}" ajax="false" />
 		</h:form>
 
 	</h:panelGroup>
