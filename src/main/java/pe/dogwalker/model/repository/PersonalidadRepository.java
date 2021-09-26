@@ -20,20 +20,6 @@ public class PersonalidadRepository implements  Serializable {
 	@PersistenceContext(unitName="pdw")
 	private EntityManager em;
 	
-
-	public Long insert(Personalidad personalidad) throws Exception {
-		em.persist(personalidad);
-		return personalidad.getIdPersonalidad();
-	}
-	
-	public Long update(Personalidad personalidad) throws Exception {
-		em.merge(personalidad);
-		return personalidad.getIdPersonalidad();
-	}
-	
-	public void delete (Personalidad personalidad) throws Exception {
-		em.remove(em.contains(personalidad)?personalidad: em.merge(personalidad));
-	}
 	
 	public List<Personalidad> findAll() throws Exception {
 		List<Personalidad> lista = new ArrayList<>(); 
@@ -41,13 +27,7 @@ public class PersonalidadRepository implements  Serializable {
 		lista = query.getResultList();
 		return lista;		
 	}
+
 	
-	public List<Personalidad> findByName(String name) throws Exception {
-		List<Personalidad> lista = new ArrayList<>(); 
-		TypedQuery<Personalidad> query = em.createQuery("SELECT p FROM Personalidad p WHERE p.name LIKE ?1", Personalidad.class);
-		query.setParameter(1, "%" + name + "%");
-		lista = query.getResultList();
-		return lista;		
-	}	
 
 }

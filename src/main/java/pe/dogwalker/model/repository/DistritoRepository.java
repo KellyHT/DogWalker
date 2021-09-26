@@ -25,6 +25,17 @@ public class DistritoRepository implements Serializable {
 		distritos = query.getResultList();
 		return distritos;
 	}
+	
+	
+
+	public List<Distrito> findByName(String name) throws Exception {
+		List<Distrito> lista = new ArrayList<>(); 
+		TypedQuery<Distrito> query = em.createQuery("SELECT d FROM Distrito d WHERE d.name LIKE ?1", Distrito.class);
+		query.setParameter(1, "%" + name + "%");
+		lista = query.getResultList();
+		return lista;		
+	}	
+
 
 
 }

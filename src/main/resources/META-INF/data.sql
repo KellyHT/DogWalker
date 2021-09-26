@@ -12,7 +12,18 @@ INSERT INTO raza(nombre) VALUES ('Cocker');
 INSERT INTO raza(nombre) VALUES ('Dálmata');
 INSERT INTO raza(nombre) VALUES ('Dóberman');
 
+INSERT INTO caracter(nombre) VALUES ('Sociable');
+INSERT INTO caracter(nombre) VALUES ('Calmado');
+INSERT INTO caracter(nombre) VALUES ('Agresivo');
+INSERT INTO caracter(nombre) VALUES ('Tímido');
+INSERT INTO caracter(nombre) VALUES ('Dominante');
+INSERT INTO caracter(nombre) VALUES ('Docil');
 
+INSERT INTO personalidad(nombre) VALUES ('Estricto');
+INSERT INTO personalidad(nombre) VALUES ('Aventurero');
+INSERT INTO personalidad(nombre) VALUES ('Divertido');
+INSERT INTO personalidad(nombre) VALUES ('Sociable');
+INSERT INTO personalidad(nombre) VALUES ('Conservador');
 
 INSERT INTO distrito(nombre) VALUES ('Breña');
 INSERT INTO distrito(nombre) VALUES ('Carabayllo');
@@ -59,3 +70,12 @@ INSERT INTO dueno(apellido, contrasena, correo, direccion, fechadenacimiento, no
 INSERT INTO dueno(apellido, contrasena, correo, direccion, fechadenacimiento, nombre, iddistrito)VALUES ('Prado', '456', 'juan@gmail.com', 'el tambo', '01/08/1980', 'Juan', 5);
 INSERT INTO dueno(apellido, contrasena, correo, direccion, fechadenacimiento, nombre, iddistrito)VALUES ('Chavez', '159', 'Pablo@gmail.com', 'N°123', '08/10/1987', 'Pablo', 1);
 INSERT INTO dueno(apellido, contrasena, correo, direccion, fechadenacimiento, nombre, iddistrito)VALUES ('Rosales', '753', 'Miriam@gmail.com', 'las hormigas N° 147', '15/04/1989', 'Miriam', 11);
+
+INSERT INTO can(descripcion, fechanacimiento, nombre, tamano, idcaracter, iddueno, idraza)	VALUES ('Es un perro muy sociable, le encanta jugar con la pelota', '10/08/2020', 'Pinky', 2, 1, 1, 1);
+INSERT INTO can(descripcion, fechanacimiento, nombre, tamano, idcaracter, iddueno, idraza)	VALUES ('Es un perro muy tímido, camina muy lento', '10/03/2021', 'Loki', 2, 2, 2, 2);
+
+
+INSERT INTO public.paseador(apellido, biografia, contrasena, correo, direccion, fechadenacimiento, montoservicio, nombre, iddistrito, idpersonalidad)VALUES ('Reyes', 'Soy estudiante de la carrera de Ingeniería de Sistemas de información de la UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '123','marcos@gmail.com', 'Calle 334 las palmas', '10/08/2000', '10.0', 'Marcos', 10, 1);
+INSERT INTO public.paseador(apellido, biografia, contrasena, correo, direccion, fechadenacimiento, montoservicio, nombre, iddistrito, idpersonalidad)VALUES ('Prado', 'Soy estudiante de la carrera de Ingeniería Insdustrial -  UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '123','Sandra@gmail.com', 'Calle 334 las palmas', '10/08/1999', '10.0', 'Sandra', 11, 2);
+
+

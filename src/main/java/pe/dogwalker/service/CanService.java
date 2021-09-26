@@ -20,9 +20,10 @@ public class CanService implements Serializable {
 	
 	@Transactional
 	public Long insert(Can can) throws Exception {
+		
 		return canRepository.insert(can);
 	}
-	
+	@Transactional
 	public Long update(Can can) throws Exception {
 		return canRepository.update(can);
 	}

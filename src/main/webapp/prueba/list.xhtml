@@ -16,15 +16,15 @@
 				<p:toolbar>
 					<f:facet name="right">
 						<p:commandButton value="Nuevo" icon="ui-icon-disk"
-						  action="#{duenoController.newDueno()}"
+						  action="#{paseadorController.newPaseador()}"
 						  ajax="false"/>
 						
 						 <p:commandButton value="Editar" icon="ui-icon-disk"
-						  action="#{duenoController.editDueno()}"
+						  action="#{paseadorController.editPaseador()}"
 						  ajax="false"/>
 						
 						 <p:commandButton value="Eliminar" icon="ui-icon-disk"
-						  action="#{duenoController.deleteDueno()}"
+						  action="#{paseadorController.deletePaseador()}"
 						  ajax="false"/>
 
 					</f:facet>
@@ -32,41 +32,41 @@
 
 
 				<p:panelGrid id="panGriBuscador" columns="3" style="width:100%">
-					<p:outputLabel value="Buscar Por Nombre:" for="txtSearchName" />
-					<p:inputText id="txtSearchName"  value="#{duenoController.filterName}" />
+					<p:outputLabel value="Buscar Por Distrito" for="txtSearchName" />
+					<p:inputText id="txtSearchName"  value="#{paseadorController.filterNombreDistrito}" />
 					<p:commandButton icon="ui-icon-search" 
-					  actionListener="#{duenoController.searchDuenoByName}"
-					  update=":frm:datTabDuenos :frm:men"/>
+					  actionListener="#{paseadorController.searchPaseadorByNombreDistrito()}"
+					  update=":frm:datTabPaseadors :frm:men"/>
 				</p:panelGrid>
 
-				<p:dataTable id="datTabDuenos"
-					emptyMessage="No existen duenoos registrados"
-					value="#{duenoController.duenos}" var="dueno"
+				<p:dataTable id="datTabPaseadors"
+					emptyMessage="No existen paseadoros registrados"
+					value="#{paseadorController.paseadors}" var="paseador"
 					
-					rowKey="#{dueno.id}"
+					rowKey="#{paseador.id}"
 					selectionMode="single"
-					selection="#{duenoController.duenoSelect}"
+					selection="#{paseadorController.paseadorSelect}"
 					
 					paginator="true" rows="10">
 					
 					
 					<p:ajax event="rowSelect"
-						listener="#{duenoController.duenoSelect}" />
+						listener="#{paseadorController.paseadorSelect}" />
 					
 
 					<p:column headerText="Id">
-						<p:outputLabel value="#{dueno.id}" />
+						<p:outputLabel value="#{paseador.id}" />
 					</p:column>
 					<p:column headerText="Dueño">
-						<p:outputLabel value="#{dueno.nombre}" />
+						<p:outputLabel value="#{paseador.nombre}" />
 					</p:column>
 					<p:column headerText="Distrito">
-						<p:outputLabel value="#{dueno.distrito.nombre}" />
-					</p:column>
-					<p:column headerText="Correo">
-						<p:outputLabel value="#{dueno.correo}" />
+						<p:outputLabel value="#{paseador.distrito.nombre}" />
 					</p:column>
 					
+						<p:column headerText="Personalidad">
+						<p:outputLabel value="#{paseador.personalidad.nombre}" />
+					</p:column>
 				</p:dataTable>
 
 				

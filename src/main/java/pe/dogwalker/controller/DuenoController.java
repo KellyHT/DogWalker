@@ -146,6 +146,8 @@ public class DuenoController implements Serializable{
 		}
 	}
 	
+
+	
 	public void duenoSelect(SelectEvent e) {
 		this.duenoSelect = (Dueno)e.getObject();
 	}

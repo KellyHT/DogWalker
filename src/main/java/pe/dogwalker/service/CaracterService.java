@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.transaction.Transactional;
 
 import pe.dogwalker.model.entity.Caracter;
 import pe.dogwalker.model.repository.CaracterRepository;
@@ -18,26 +17,9 @@ public class CaracterService implements Serializable {
 	@Inject
 	private CaracterRepository caracterRepository;
 	
-	@Transactional
-	public Long insert(Caracter caracter) throws Exception {
-		return caracterRepository.insert(caracter);
-	}
-	
-	public Long update(Caracter caracter) throws Exception {
-		return caracterRepository.update(caracter);
-	}
 
-	@Transactional
-	public void delete (Caracter caracter) throws Exception {
-		caracterRepository.delete(caracter);
-	}
-	
 	public List<Caracter> findAll() throws Exception {
 		return caracterRepository.findAll();
-	}
-	
-	public List<Caracter> findByName(String name) throws Exception {
-		return caracterRepository.findByName(name);
 	}
 	
 	

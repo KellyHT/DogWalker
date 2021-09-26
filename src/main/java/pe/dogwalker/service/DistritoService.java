@@ -20,5 +20,9 @@ public class DistritoService implements Serializable{
 	public List<Distrito> findAll() throws Exception {
 		return distritoRepository.findAll();
 	}
+	
+	public List<Distrito> findByName(String name) throws Exception {
+		return distritoRepository.findByName(name);
+	}
 
 }
