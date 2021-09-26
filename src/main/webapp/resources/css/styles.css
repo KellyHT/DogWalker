@@ -1,0 +1,209 @@
+* body{    
+    font-family: 'Poppins', sans-serif;
+    background-color:#fff;
+}
+
+.head-nav{
+    padding:10px 40px ;
+    background-color: #eb9956ed;
+}
+
+.jumbotron.bg-portada{
+    text-align: center;
+    padding: 0px !important;
+}
+
+.logo-brand{
+    min-width: 120px;
+    max-width: 140px;
+
+}
+
+.nav-item{
+    margin: 0px 40px;
+}
+.searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 60px;
+    background-color: #353b48;
+    border-radius: 30px;
+    padding: 10px;
+    }
+
+    .search_input{
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color:transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_input{
+    padding: 0 10px;
+    width: 450px;
+    caret-color:#f1852d;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_icon{
+    background: white;
+    color: #f1852d;
+    }
+
+    .search_icon{
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:white;
+    text-decoration:none;
+    }
+.row
+{
+    place-content: space-between;
+    padding: 0px 10px;
+    
+}
+.display-4{
+    font-weight: 600 !important;
+    padding: 10px;
+    color:rgb(238, 152, 39);
+    text-align: center;
+}
+
+
+.display-7{
+    font-weight: 600 !important;
+    padding: 10px;
+    text-align: center;
+}
+.display-6{
+    padding: 15px;
+}
+
+.display-8{
+    font-weight: 600 !important;
+    padding: 10px;
+    text-align: center;
+    color:rgb(218, 118, 47);
+}
+
+.aboutimd{
+    margin: auto;
+    display: block;
+}
+.card{
+    min-width: 250px !important;
+}
+.lead{
+    margin-top: 30px;
+}
+
+.bg-portada{
+    background: url(https://gestion.portalbiesa.com/redaccio/arxius/imatges/201902/1200_1549555175blog_post_pasear_perro_2.jpg);
+    background-size: cover;
+}
+.card.col-lg-2{
+    margin: 10px; 
+    
+    padding: 0px;
+}
+
+.col-lg-4{
+    color: white; 
+    font-size: 10px; 
+    display: flex;
+}
+.card-title{
+    color:white;
+    font-size: 12px;
+}
+
+.foo{
+    padding: 50px;
+    background: #eb9956ed;
+    margin-top: 40px;
+}
+
+footer {
+    padding: 80px 0;
+    text-align: center;
+    color:white;
+    text-decoration: none;
+    background-color: rgb(240, 170, 91);
+    display: block;
+
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+footer .list-inline .list-inline-item {
+    padding: 10px 15px;
+   
+}
+a{
+    cursor: pointer;
+}
+.btns{
+    align-self: center;
+    text-align: center;
+    
+}
+.btns a{
+ display: block;
+ margin: 15px;
+
+}
+.circle{
+    border-radius: 50px !important;
+
+}
+.search {
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+    height: 60px;
+    border-radius: 120px;
+    margin: 0 auto;
+  }
+.card div{
+    flex-wrap: inherit;
+}
+.container{
+    margin-top: 40px;
+}
+
+p{
+   color: gainsboro; 
+   padding: 10px;
+   text-align: center;
+}
+.black-filter{
+    padding: 6rem 3rem;
+    background:linear-gradient(118deg, rgba(0,0,0,0.9555419579941351) 5%, rgba(0,0,0,0.9555419579941351) 11%, rgba(0,0,0,0.5409761316636029) 49%);
+}
+.black-filter h1{
+    color: white;
+}
+.black-filter p{
+    color:white;
+}
+
+.df{
+	align-items:center;
+}
