@@ -32,13 +32,13 @@
 				<div class="form-group col-sm-12">
 					<h:inputText type="text" class="form-control item"
 						autocomplete="off" id="correoDueno" pt:placeholder="Correo"
-						value="#{duenoController.dueno.nombre}" required="true" />
+						value="#{loginController.dueno.correo}" required="true" />
 				</div>
 
 				<div class="form-group col-sm-12">
 					<h:inputSecret type="password" class="form-control item"
 						id="contrasenaDueno" pt:placeholder="Contraseña"
-						value="#{duenoController.dueno.apellido}" />
+						value="#{loginController.dueno.contrasena}" />
 					<span class="bbb-input"></span>
 				</div>
 			</div>
@@ -53,15 +53,12 @@
 
 			<h:panelGroup layout="block" styleClass="form-group">
 				<h:commandButton value="Iniciar Sesión"
-					actionListener="#{duenoController.insertar()}"
-					styleClass=" btn btn-block create-account "
-					action="listDueno?faces-redirect=true" />
+					actionListener="#{loginController.verificarUsuario()}"
+					styleClass=" btn btn-block create-account "/>
 
 			</h:panelGroup>
 
 
-			<p:inputText autocomplete="off" id="id" styleClass="form-control"
-				value="#{duenoController.dueno.id}" type="hidden" required="true" />
 
 		</h:form>
 

@@ -55,15 +55,18 @@
 					<p:outputLabel value="Contraseña" for="txtContrasena" />
 					<p:inputText id="txtContrasena" required="true" maxlength="45"
 						value="#{duenoController.dueno.contrasena}" />
-					<p:outputLabel value="Distrito" for="cboDistrito" />
-					<p:selectOneMenu i="cboDistrito" required="true" effect="drop"
-						value="#{duenoController.distrito}"
+					
+					<p:outputLabel value="Direccion" for="cboDireccion" />	
+					<p:selectOneMenu id="cboDireccion" required="true" effect="drop"
+						value="#{canController.caracter}"
 						converter="omnifaces.SelectItemsConverter">
 						<f:selectItem itemLabel="Seleccione una opción"
 							noSelectionOption="true" itemValue="" />
-						<f:selectItems value="#{duenoController.distritos}" var="distrito"
-							itemLabel="#{distrito.nombre}" itemValue="#{distrito}" />
-					</p:selectOneMenu>
+						<f:selectItems value="#{canController.caracteres}" var="caracter"
+							itemLabel="#{caracter.nombre}" itemValue="#{caracter}" />
+					</p:selectOneMenu>	
+					
+					
 
 					<p:outputLabel value="Direccion" for="txtDireccion" />
 					<p:inputText id="txtDireccion" required="true" maxlength="45"

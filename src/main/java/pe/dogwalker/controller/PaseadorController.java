@@ -75,7 +75,7 @@ public class PaseadorController implements Serializable{
 			resetForm();
 		} catch (Exception e) {
 		}
-		return "/prueba/registrarCuentaPaseador";
+		return "/paseador/registrarCuentaPaseador";
 	}
 	
 	public void resetForm() {
@@ -108,7 +108,7 @@ public class PaseadorController implements Serializable{
 			}
 			this.getAllPaseadors();
 			resetForm();
-			view = "/prueba/list";
+			view = "/paseador/list";
 		} 
 		catch (Exception e) {
 		}

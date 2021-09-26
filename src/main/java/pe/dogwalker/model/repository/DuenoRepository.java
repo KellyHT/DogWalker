@@ -47,5 +47,23 @@ public class DuenoRepository implements Serializable {
 		lista = query.getResultList();
 		return lista;
 	}
+	
+	public List<Dueno> findByCorreoContrasena(String correo, String contrasena)  {
+		System.out.print("Ingrese a repositorio");
+		List<Dueno> lista = new ArrayList<>();
+		try {
+			
+			TypedQuery<Dueno> query = em.createQuery("SELECT p FROM Dueno p WHERE p.nombre LIKE ?1 and p.contrasena LIKE ?2", Dueno.class);
+			query.setParameter(1, "%" + correo + "%");
+			query.setParameter(2, "%" + contrasena + "%");
+			System.out.print("query " + query);
+			lista = query.getResultList();
+		} catch (Exception e) {
+			System.out.print(" error "+ e);
+		}
+		
+		
+		return lista;
+	}
 
 }

@@ -11,7 +11,7 @@
 <h:head>
 	<link
 		href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet" />
-	<link rel="stylesheet  " href="../resources/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="../resources/css/bootstrap.min.css" />
 	<link rel="stylesheet"	href="../resources/css/bootstrap-datetimepicker.min.css" />
 	<link rel="stylesheet" href="../resources/css/style.css" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -28,60 +28,90 @@
 			<div class="row">
 				<div class="form-group col-sm-6">
 					<h:inputText type="text" class="form-control item"
-						autocomplete="off" i=" nombreDueno" pt:placeholder="Nombre "
-						value="#{duenoController.dueno.nombre}" required="true" />
+						autocomplete="off" i="nombrePaseador" pt:placeholder="Nombre"
+						value="#{paseadorController.paseador.nombre}" required="true" />
 				</div>
 				<div class="form-group col-sm-6">
 					<h:inputText type="text" class="form-control item"
-						i="apellidoDueno" pt:placeholder="Apellidos"
-						value="#{duenoController.dueno.apellido}" />
+						i="apellidoPaseador" pt:placeholder="Apellidos"
+						value="#{paseadorController.paseador.apellido}" />
 				</div>
 			</div>
 
 			<div class="form-group">
-				<h:inputText type="text" class="form-control item" i="email"
-					pt:placeholder="email" value="#{duenoController.dueno.correo}" />
+				<h:inputText type="text" class="form-control item"
+					i="correoPaseador" pt:placeholder="email"
+					value="#{paseadorController.paseador.correo}" />
 			</div>
 			<div class="form-group">
-				<h:inputText type="text" class="form-control item" i="pasword"
-					pt:placeholder="contraseña"
-					value="#{duenoController.dueno.contrasena}" />
+				<h:inputText type="text" class="form-control item"
+					i="contrasenaPaseador" pt:placeholder="contraseña"
+					value="#{paseadorController.paseador.contrasena}" />
 			</div>
-
 
 
 			<div class="row">
 				<div class="form-group col-sm-6">
 					<div class=" form group date" id="id_0">
-						<p:calendar id="fechaMotor" pattern="dd/MM/yyyy"
-							value="#{duenoController.dueno.fechaDeNacimiento}" timeZone="UTC"
+					<p:calendar id="fechaMotor" pattern="dd/MM/yyyy"
+							value="#{paseadorController.paseador.fechaDeNacimiento}" timeZone="UTC"
 							required="true" pt:placeholder="Fecha de nacimiento">
 						</p:calendar>
 					</div>
 				</div>
 
 				<div class="form-group col-sm-6">
-					<h:selectOneMenu i="cboDistrito" class="form-control itemselect"
-						value="#{duenoController.distrito}"
+				<h:selectOneMenu i="cboDistrito" class="form-control itemselect"
+						value="#{paseadorController.distrito}"
 						converter="omnifaces.SelectItemsConverter">
 						<f:selectItem itemLabel="Distrito" itemValue="" />
-						<f:selectItems value="#{duenoController.distritos}" var="distrito"
+						<f:selectItems value="#{paseadorController.distritos}" var="distrito"
 							itemLabel="#{distrito.nombre}" itemValue="#{distrito}" />
 					</h:selectOneMenu>
-
 
 				</div>
 			</div>
 
 			<div class="form-group">
-				<h:inputText type="text" class="form-control item" id="Dirección"
-					pt:placeholder="Dirección"
-					value="#{duenoController.dueno.direccion}" />
+				<h:inputText type="text" class="form-control item"
+					i="direccionPaseador" pt:placeholder="Dirección"
+					value="#{paseadorController.paseador.direccion}" />
 			</div>
+
+			<div class="form-group">
+				<h:inputText type="text" class="form-control item"
+					i="biografiaPaseador" pt:placeholder="Descripción"
+					value="#{paseadorController.paseador.biografia}" />
+			</div>
+
+
+
+			<div class="form-group">
+			
+					
+				<h:selectOneMenu i="cboPersonalidad"
+					class="form-control itemselect"
+					value="#{paseadorController.personalidad}"
+					converter="omnifaces.SelectItemsConverter">
+					<f:selectItems value="#{paseadorController.personalidades}"
+						var="personalidad" itemLabel="#{personalidad.nombre}" itemValue="#{personalidad}" />
+				</h:selectOneMenu>
+			</div>
+
+
+
+			<div class="form-group">
+				<h:inputText type="text" class="form-control item"
+					i="montoServicioPaseador" pt:placeholder="Monto"
+					value="#{paseadorController.paseador.montoServicio}" />
+			</div>
+
 
 			<h:commandButton value="Crear Cuenta"
 				styleClass=" btn btn-block create-account "
-				action="#{duenoController.saveDueno()}" ajax="false" />
+				action="#{paseadorController.savePaseador()}" ajax="false" />
+	
+
 		</h:form>
 
 	</h:panelGroup>

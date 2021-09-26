@@ -1,0 +1,78 @@
+<!DOCTYPE html
+   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta content="" />
+	<title>Seleccion tipo</title>
+
+	
+	<link rel="stylesheet" href="../resources/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../resources/css/style.css" />
+	<link rel="stylesheet" href="../resources/css/Kevin.css" />
+
+</h:head>
+
+
+
+<h:body>
+	<h:panelGroup layout="block" styleClass="registration-form cambios">
+		<h:form>
+		
+			  <div class="text-center" >
+			  
+			  <h:outputLabel styleClass=" create-type" value="¿Cómo te quieres registrar? "  />
+
+        </div>
+			
+			<div class="row  d-flex justify-content-center align-items-center">
+				<div class="col-auto">
+					<div
+						class=" card border-0 ab justify-content-center align-items-center">
+						<div class="card abc border-0">
+							<img class="img-fluid " src="../resources/img/dueño.jpeg" alt="" />
+							<div class="card-body  text-center">
+								<h:commandButton value="Dueño"						
+							action="#{duenoController.newDueno()}"
+							styleClass="btn btn-block create-account size_type ajax=false" />
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-auto">
+					<div class="card abcd border-0">
+						<div class="outer">
+							<div class="inner"></div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-auto">
+					<div
+						class=" card border-0 ab justify-content-center align-items-center">
+						<div class="card abc border-0 ">
+							<img class="img-fluid" src="../resources/img/paseador.jpeg" alt="" />
+							<div class="card-body  text-center">
+								<h:commandButton value="Paseador"						
+							action="#{paseadorController.newPaseador()}"
+							styleClass="btn btn-block create-account size_type ajax=false" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	
+	
+	</h:form>
+	</h:panelGroup>
+</h:body>
+</html>
+
