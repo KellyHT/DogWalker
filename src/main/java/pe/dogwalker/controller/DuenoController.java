@@ -210,4 +210,11 @@ public class DuenoController implements Serializable{
 		this.filterName = filterName;
 	}
 
+	
+	///KEVIN
+	
+	public void setFilterNam(String filterName) {
+		this.filterName = filterName;
+	}
+	///
 }
