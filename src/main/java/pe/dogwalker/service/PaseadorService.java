@@ -40,4 +40,8 @@ public class PaseadorService implements Serializable{
 		return paseadorRepository.findByName(name);
 	}
 	
+	public List<Paseador> findByDistrito(String name) throws Exception {
+		return paseadorRepository.findByDistrito(name);
+	}
+	
 }

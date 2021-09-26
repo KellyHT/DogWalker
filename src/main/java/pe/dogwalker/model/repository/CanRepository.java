@@ -19,8 +19,13 @@ public class CanRepository implements Serializable {
 	@PersistenceContext(unitName="pdw")
 	private EntityManager em;
 	
-	public Long insert(Can can) throws Exception {
-		em.persist(can);
+	public Long insert(Can can)  {
+		try {
+			em.persist(can);
+		} catch (Exception e) {
+			System.out.print("Problemaaa " + e);
+		}
+		
 		return can.getIdCan();
 	}
 	

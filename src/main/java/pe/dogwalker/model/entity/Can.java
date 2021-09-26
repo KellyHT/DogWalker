@@ -12,13 +12,13 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Can {
-	//ATRIBUTOSSSSSSSS KELLY
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private Long idCan;
 	
-	@ManyToOne
-	@JoinColumn(name="idDueno", nullable=false)
+	@ManyToOne /// cambiar
+	@JoinColumn(name="idDueno", nullable=true)
 	private Dueno dueno;
 	
 	@ManyToOne

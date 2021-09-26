@@ -46,6 +46,24 @@ public class PaseadorRepository implements  Serializable{
 		query.setParameter(1, "%" + name + "%");
 		paseadores = query.getResultList();
 		return paseadores;		
+	}
+	
+	/*public List<Paseador> findByDistrito(String idDistrito) throws Exception {
+		List<Paseador> paseadores = new ArrayList<>(); 
+		TypedQuery<Paseador> query = em.createQuery("SELECT p FROM Paseador p WHERE p.idDistrito LIKE ?1", Paseador.class);
+		query.setParameter(1, idDistrito);
+		paseadores = query.getResultList();
+		return paseadores;		
 	}	
+*/
+	
+	public List<Paseador> findByDistrito(String nombre) throws Exception {
+	List<Paseador> paseadores = new ArrayList<>(); 
+	TypedQuery<Paseador> query = em.createQuery("SELECT p FROM Paseador p left join fetch p.distrito  where p.distrito.nombre  LIKE ?1", Paseador.class);
+	query.setParameter(1, "%" + nombre + "%");
+	paseadores = query.getResultList();
+	return paseadores;		
+}	
 
+	
 }
