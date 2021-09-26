@@ -15,11 +15,11 @@
 
 				<p:toolbar>
 					<f:facet name="right">
-						<p:commandButton value="KELLY" icon="ui-icon-disk"
-							action="#{duenoController.saveDueno()}" ajax="false" />
+						<p:commandButton value="Guardar" icon="ui-icon-disk"
+							action="#{canController.saveCan()}" ajax="false" />
 
 						<p:commandButton value="Regresar" icon="ui-icon-disk"
-							action="#{duenoController.listDueno()}" immediate="true"
+							action="#{canController.listCan()}" immediate="true"
 							ajax="false" />
 					</f:facet>
 				</p:toolbar>
@@ -28,38 +28,46 @@
 
 
 				<p:panelGrid id="panGridProduct" columns="2" style="width:100%">
-					<p:outputLabel value="Nombre PRUEBAAAA KELLY :" for="txtName" />
+					<p:outputLabel value="Nombre:" for="txtName" />
 					<p:inputText id="txtName" required="true" maxlength="45"
-						value="#{duenoController.dueno.nombre}" />
-					<p:outputLabel value="Apellido" for="txtApellido" />
-					<p:inputText id="txtApellido" required="true" maxlength="45"
-						value="#{duenoController.dueno.apellido}" />
+						value="#{canController.can.nombre}" />
 						
-							<p:outputLabel value="Correo" for="txtCorreo" />
-					<p:inputText id="txtCorreo" required="true" maxlength="45"
-						value="#{duenoController.dueno.correo}" />
-					<p:outputLabel value="Contraseña" for="txtContrasena" />
-					<p:inputText id="txtContrasena" required="true" maxlength="45"
-						value="#{duenoController.dueno.contrasena}" />
-					<p:outputLabel value="Distrito" for="cboDistrito" />
-					<p:selectOneMenu id="cboDistrito" required="true" effect="drop"
-						value="#{duenoController.distrito}"
+					<p:outputLabel value="Raza" for="cboRaza" />	
+					<p:selectOneMenu id="cboRaza" required="true" effect="drop"
+						value="#{canController.raza}"
 						converter="omnifaces.SelectItemsConverter">
 						<f:selectItem itemLabel="Seleccione una opción"
 							noSelectionOption="true" itemValue="" />
-						<f:selectItems value="#{duenoController.distritos}" var="distrito"
-							itemLabel="#{distrito.nombre}" itemValue="#{distrito}" />
+						<f:selectItems value="#{canController.razas}" var="raza"
+							itemLabel="#{raza.nombre}" itemValue="#{raza}" />
 					</p:selectOneMenu>
-
-					<p:outputLabel value="Direccion" for="txtDireccion" />
-					<p:inputText id="txtDireccion" required="true" maxlength="45"
-						value="#{duenoController.dueno.direccion}" />
-				
-					<p:outputLabel value="fecha de Nacimiento" for="txtContrasena" />
+						<p:outputLabel value="Caracter" for="cboCaracter" />	
+					<p:selectOneMenu id="cboCaracter" required="true" effect="drop"
+						value="#{canController.caracter}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Seleccione una opción"
+							noSelectionOption="true" itemValue="" />
+						<f:selectItems value="#{canController.caracteres}" var="caracter"
+							itemLabel="#{caracter.nombre}" itemValue="#{caracter}" />
+					</p:selectOneMenu>	
+						
+					<p:outputLabel value="Tamaño:" for="txtTamano" />
+					<p:inputText id="txtTamano" required="true" maxlength="45"
+						value="#{canController.can.tamano}" />
+						
+						
+						
+					<p:outputLabel value="fecha de Nacimiento" for="fechaNacimiento" />
 					<p:calendar id="fechaNacimiento" pattern="dd/MM/yyyy"
-						value="#{duenoController.dueno.fechaDeNacimiento}" timeZone="UTC"
+						value="#{canController.can.fechaNacimiento}" timeZone="UTC"
 						required="true">
-					</p:calendar>
+					</p:calendar>	
+							
+											
+					<p:outputLabel value="Descripcion" for="txtDescripcion" />
+					<p:inputText id="txtDescripcion" required="true" maxlength="45"
+						value="#{canController.can.descripcion}" />
+						
 
 				</p:panelGrid>
 				<br></br>
