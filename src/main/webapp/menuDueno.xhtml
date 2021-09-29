@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+<h:head>
+	<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet" />
+	<link rel="stylesheet  " href="resources/css/bootstrap.min.css" />
+	<link rel="stylesheet"	href="resources/css/bootstrap-datetimepicker.min.css" />
+	<link rel="stylesheet" href="resources/css/style.css" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</h:head>
+
+<h:body>
+	<h:panelGroup layout="block" styleClass="registration-form">
+		<h:form>
+
+			<div class="form-icon">
+				<span><i class="icon icon-user"></i></span>
+			</div>
+
+		
+
+			<h:commandButton value="Editar Perfil"
+				styleClass=" btn btn-block create-account "
+				action="#{duenoController.saveDueno()}" ajax="false" />
+				
+				<h:commandButton value="Gestionar mascotas"
+				styleClass=" btn btn-block create-account "
+				action="#{duenoController.saveDueno()}" ajax="false" />
+				
+				<h:commandButton value="Solicitudes"
+				styleClass=" btn btn-block create-account "
+				action="#{duenoController.saveDueno()}" ajax="false" />
+				
+				<h:commandButton value="Cerrar sesion"
+				styleClass=" btn btn-block create-account "
+				action="#{loginController.cerrar()}" ajax="false" />
+		</h:form>
+
+	</h:panelGroup>
+	</h:body>
+
+</html>

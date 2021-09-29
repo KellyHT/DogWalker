@@ -14,6 +14,7 @@ import pe.dogwalker.model.repository.CalificacionRepository;
 public class CalificacionService implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
 	@Inject
 	private CalificacionRepository calificacionRepository;
 	
@@ -22,6 +23,7 @@ public class CalificacionService implements Serializable {
 		return calificacionRepository.insert(calificacion);
 	}
 	
+	@Transactional
 	public Long update(Calificacion calificacion) throws Exception {
 		return calificacionRepository.update(calificacion);
 	}
@@ -38,6 +40,5 @@ public class CalificacionService implements Serializable {
 	public List<Calificacion> findByName(String name) throws Exception {
 		return calificacionRepository.findByName(name);
 	}
-	
 	
 }

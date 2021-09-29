@@ -43,5 +43,8 @@ public class PaseadorService implements Serializable{
 	public List<Paseador> findByDistrito(String name) throws Exception {
 		return paseadorRepository.findByDistrito(name);
 	}
+	public List<Paseador> findByCorreoContrasena(String correo, String contrasena) throws Exception {
+		return paseadorRepository.findByCorreoContrasena(correo, contrasena);
+	}
 	
 }

@@ -1,177 +1,287 @@
 package pe.dogwalker.controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
+import pe.dogwalker.model.entity.Dueno;
+import pe.dogwalker.model.entity.Paseador;
+import pe.dogwalker.model.entity.Solicitud;
+import pe.dogwalker.model.entity.Tiempo;
+import pe.dogwalker.service.DuenoService;
+import pe.dogwalker.service.PaseadorService;
+import pe.dogwalker.service.SolicitudService;
+import pe.dogwalker.service.TiempoService;
+import pe.dogwalker.util.Message;
+
 @Named
-@RequestScoped
+@SessionScoped
+public class SolicitudController implements Serializable{
 
-public class SolicitudController implements Serializable {
-
-/*	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	
 	@Inject
-	private ISolicitudService sService;
+	private SolicitudService solicitudService;
+	
 	@Inject
-	private IEstadoService eService;
+	private DuenoService duenoService;
+	
 	@Inject
-	private ITiempoService tService;
+	private PaseadorService paseadorService;
+	
 	@Inject
-	private IDuenoService dService;
-	@Inject
-	private IPaseadorService pService;
+	private TiempoService tiempoService;
+	
+	
 	private Solicitud solicitud;
-	private Estado estado;
-	private Tiempo tiempo;
-	private Dueno dueno;
-	private Paseador paseador;
-	List<Solicitud> listaSolicitudes;
-	List<Estado> listaEstados;
-	List<Tiempo> listaTiempos;
-	List<Dueno> listaDuenos;
-	List<Paseador> listaPaseadores;
+	private List<Solicitud> solicitudes;
+	private Solicitud solicitudSelect;
 	
+	private Dueno dueno;
+	private List<Dueno> duenos;
+	
+	
+	private Paseador paseador;
+	private List<Paseador> paseadores;
+	
+	private Tiempo tiempo;
+	private List<Tiempo> tiempos;
+	
+	
+	private String filterName;
 	
 	@PostConstruct
 	public void init() {
-		this.listaSolicitudes = new ArrayList<Solicitud>();
-		this.listaEstados = new ArrayList<Estado>();
-		this.listaTiempos = new ArrayList<Tiempo>();
-		this.listaDuenos = new ArrayList<Dueno>();
-		this.listaPaseadores = new ArrayList<Paseador>();
+		solicitud = new Solicitud();
+		dueno = new Dueno();
+		paseador = new Paseador();
+		tiempo = new Tiempo();
+		solicitudes = new ArrayList<Solicitud>();
+		duenos = new ArrayList<Dueno>();
+		paseadores = new ArrayList<Paseador>();
+		tiempos = new ArrayList<Tiempo>();
+		getAllSolicituds();
+	}
+	
+	
+	public void getAllSolicituds() {
+		try {
+			solicitudes = solicitudService.findAll();
+		} catch (Exception e) {
+			Message.messageError("Error al cargar Solicitudos: " + e.getMessage());
+		}
+	}
+	
+	public String newSolicitud() {
+		try {
+			this.duenos = duenoService.findAll();
+			this.paseadores = paseadorService.findAll();
+			this.tiempos = tiempoService.findAll();
+			resetForm();
+		} catch (Exception e) {
+		}
+		return "/solicitud/registrarCuentaSolicitud";
+	}
+	
+	public void resetForm() {
+		this.filterName = "";
 		this.solicitud = new Solicitud();
-		this.estado = new Estado();
-		this.tiempo = new Tiempo();
-		this.dueno = new Dueno();
-		this.paseador = new Paseador();
-		this.listar();
-		this.listarEstados();
-		this.listarTiempo();
-		this.listarDuenos();
-		this.listarPaseadores();
-		
-		
-	}
-
-	public String nuevoSolicitud() {
-		this.setSolicitud(new Solicitud());
-		return "solicitud.xhtml";
 	}
 	
-	public void insertar() {
-		sService.insertar(solicitud);
-		limpiarSolicitud();
+	public String listSolicitud() {
+		return "/solicitud/list";
 	}
 	
-	public void listar() {
-		listaSolicitudes = sService.listar();
-	}
+	public String saveSolicitud() {
 
-	public void listarEstados() {
-		listaEstados = eService.listar();
-	}
-
-	public void listarTiempo() {
-		listaTiempos = tService.listar();
-	}
-
-	public void listarDuenos() {
-		listaDuenos = dService.listar();
-	}
-
-	public void listarPaseadores() {
-		listaPaseadores = pService.listar();
-	}
-
-	public void limpiarSolicitud() {
-		this.init();
+		String view = "";
+		try {
+			if (solicitud.getIdSolicitud() != null) 
+			{
+				solicitud.setDueno(dueno);
+				solicitud.setPaseador(paseador);
+				solicitud.setTiempo(tiempo);
+				solicitudService.update(solicitud);
+				Message.messageInfo("Calificación actualizada");
+			}
+			else 
+			{
+				solicitud.setDueno(dueno);
+				solicitud.setPaseador(paseador);
+				solicitud.setTiempo(tiempo);
+				solicitudService.insert(solicitud);
+				Message.messageInfo("Calificación registrada");				
+			}
+			this.getAllSolicituds();
+			resetForm();
+			view = "/solicitud/list";
+		} 
+		catch (Exception e) {
+		}
+		return view;
 	}
 	
-	public void eliminar(Solicitud solicitud) {
-		sService.eliminar(solicitud.getIdSolicitud());
-		this.listar();
+	public String editSolicitud() {
+		String view = "";
+		try 
+		{
+			if (this.solicitudSelect != null) 
+			{
+				this.solicitud = solicitudSelect;
+				view = "/solicitud/update";
+			}
+			else 
+			{
+				Message.messageError("Debe Seleccionar un solicitudo");
+			}
+		} 
+		catch (Exception e) {
+			Message.messageError("Error  en dueño: " + e.getMessage());
+		}
+		return view;
 	}
+	
+	public String deleteSolicitud() {
+		String view = "";
+		try {
+			this.solicitud = solicitudSelect;
+			solicitudService.delete(this.solicitud);
+			Message.messageInfo("Registro Eliminado Correctamente");
+			this.getAllSolicituds();
+			view = "/solicitud/list";
+		} catch (Exception e) {
+			Message.messageError("Error en solicitudo " + e.getMessage());
+		}
+		return view;
+	}
+	
+	public void searchSolicitudByName() {
+		try {
+			solicitudes = solicitudService.findByName(this.filterName.trim());
+			resetForm();
+			if (solicitudes.isEmpty()) {
+				Message.messageInfo("No se encontraron solicitudos");
+			}
+		} catch (Exception e) {
+			Message.messageError("Error en solicitudo " + e.getMessage());
+		}
+	}
+
+
+	public TiempoService getTiempoService() {
+		return tiempoService;
+	}
+
+
+	public void setTiempoService(TiempoService tiempoService) {
+		this.tiempoService = tiempoService;
+	}
+
 
 	public Solicitud getSolicitud() {
 		return solicitud;
 	}
 
+
 	public void setSolicitud(Solicitud solicitud) {
 		this.solicitud = solicitud;
 	}
 
-	public Estado getEstado() {
-		return estado;
+
+	public List<Solicitud> getSolicitudes() {
+		return solicitudes;
 	}
 
-	public void setEstado(Estado estado) {
-		this.estado = estado;
+
+	public void setSolicitudes(List<Solicitud> solicitudes) {
+		this.solicitudes = solicitudes;
 	}
 
-	public Tiempo getTiempo() {
-		return tiempo;
+
+	public Solicitud getSolicitudSelect() {
+		return solicitudSelect;
 	}
 
-	public void setTiempo(Tiempo tiempo) {
-		this.tiempo = tiempo;
+
+	public void setSolicitudSelect(Solicitud solicitudSelect) {
+		this.solicitudSelect = solicitudSelect;
 	}
+
 
 	public Dueno getDueno() {
 		return dueno;
 	}
 
+
 	public void setDueno(Dueno dueno) {
 		this.dueno = dueno;
 	}
+
+
+	public List<Dueno> getDuenos() {
+		return duenos;
+	}
+
+
+	public void setDuenos(List<Dueno> duenos) {
+		this.duenos = duenos;
+	}
+
 
 	public Paseador getPaseador() {
 		return paseador;
 	}
 
+
 	public void setPaseador(Paseador paseador) {
 		this.paseador = paseador;
 	}
 
-	public List<Solicitud> getListaSolicitudes() {
-		return listaSolicitudes;
+
+	public List<Paseador> getPaseadores() {
+		return paseadores;
 	}
 
-	public void setListaSolicitudes(List<Solicitud> listaSolicitudes) {
-		this.listaSolicitudes = listaSolicitudes;
+
+	public void setPaseadores(List<Paseador> paseadores) {
+		this.paseadores = paseadores;
 	}
 
-	public List<Estado> getListaEstados() {
-		return listaEstados;
+
+	public Tiempo getTiempo() {
+		return tiempo;
 	}
 
-	public void setListaEstados(List<Estado> listaEstados) {
-		this.listaEstados = listaEstados;
+
+	public void setTiempo(Tiempo tiempo) {
+		this.tiempo = tiempo;
 	}
 
-	public List<Tiempo> getListaTiempos() {
-		return listaTiempos;
+
+	public List<Tiempo> getTiempos() {
+		return tiempos;
 	}
 
-	public void setListaTiempos(List<Tiempo> listaTiempos) {
-		this.listaTiempos = listaTiempos;
+
+	public void setTiempos(List<Tiempo> tiempos) {
+		this.tiempos = tiempos;
 	}
 
-	public List<Dueno> getListaDuenos() {
-		return listaDuenos;
+
+	public String getFilterName() {
+		return filterName;
 	}
 
-	public void setListaDuenos(List<Dueno> listaDuenos) {
-		this.listaDuenos = listaDuenos;
+
+	public void setFilterName(String filterName) {
+		this.filterName = filterName;
 	}
 
-	public List<Paseador> getListaPaseadores() {
-		return listaPaseadores;
-	}
 
-	public void setListaPaseadores(List<Paseador> listaPaseadores) {
-		this.listaPaseadores = listaPaseadores;
-	}
-*/
+	
 }

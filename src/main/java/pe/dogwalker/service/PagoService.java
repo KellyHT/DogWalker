@@ -14,7 +14,7 @@ import pe.dogwalker.model.repository.PagoRepository;
 public class PagoService implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Inject
 	private PagoRepository pagoRepository;
 	
@@ -23,6 +23,7 @@ public class PagoService implements Serializable {
 		return pagoRepository.insert(pago);
 	}
 	
+	@Transactional
 	public Long update(Pago pago) throws Exception {
 		return pagoRepository.update(pago);
 	}
@@ -39,6 +40,4 @@ public class PagoService implements Serializable {
 	public List<Pago> findByName(String name) throws Exception {
 		return pagoRepository.findByName(name);
 	}
-	
-	
 }

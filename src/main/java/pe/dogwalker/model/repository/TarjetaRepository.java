@@ -11,7 +11,6 @@ import javax.persistence.TypedQuery;
 
 import pe.dogwalker.model.entity.Tarjeta;
 
-
 @Named
 public class TarjetaRepository implements Serializable {
 
@@ -20,33 +19,13 @@ public class TarjetaRepository implements Serializable {
 	@PersistenceContext(unitName="pdw")
 	private EntityManager em;
 	
-	public Long insert(Tarjeta tarjeta) throws Exception {
-		em.persist(tarjeta);
-		return tarjeta.getIdTarjeta();
-	}
-	
-	public Long update(Tarjeta tarjeta) throws Exception {
-		em.merge(tarjeta);
-		return tarjeta.getIdTarjeta();
-	}
-	
-	public void delete (Tarjeta tarjeta) throws Exception {
-		em.remove(em.contains(tarjeta)?tarjeta: em.merge(tarjeta));
-	}
-	
 	public List<Tarjeta> findAll() throws Exception {
-		List<Tarjeta> lista = new ArrayList<>(); 
-		TypedQuery<Tarjeta> query = em.createQuery("SELECT p FROM Tarjeta p", Tarjeta.class);
-		lista = query.getResultList();
-		return lista;		
+		List<Tarjeta> tarjetas = new ArrayList<>();
+		TypedQuery<Tarjeta> query = em.createQuery("SELECT s FROM Tarjeta s", Tarjeta.class);
+		tarjetas = query.getResultList();
+		return tarjetas;
 	}
 	
-	public List<Tarjeta> findByName(String name) throws Exception {
-		List<Tarjeta> lista = new ArrayList<>(); 
-		TypedQuery<Tarjeta> query = em.createQuery("SELECT p FROM Tarjeta p WHERE p.name LIKE ?1", Tarjeta.class);
-		query.setParameter(1, "%" + name + "%");
-		lista = query.getResultList();
-		return lista;		
-	}	
+
 
 }

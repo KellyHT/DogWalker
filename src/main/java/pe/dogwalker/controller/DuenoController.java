@@ -63,7 +63,7 @@ public class DuenoController implements Serializable{
 			resetForm();
 		} catch (Exception e) {
 		}
-		return "/dueno/registrarCuentaDueno";
+		return "/registrarCuentaDueno";
 	}
 	
 	public void resetForm() {
@@ -93,7 +93,7 @@ public class DuenoController implements Serializable{
 			}
 			this.getAllDuenos();
 			resetForm();
-			view = "/dueno/list";
+			view = "inicioDueno.xhtml";
 		} 
 		catch (Exception e) {
 		}

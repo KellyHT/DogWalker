@@ -25,7 +25,7 @@ public class Dueno {
 
 	@Column(name = "correo", nullable = false, length = 100)
 	private String correo;
-	@Column(name = "contrasena", nullable = false, length = 20)
+	@Column(name = "contrasena", nullable = false, length = 100)
 	private String contrasena;
 
 	private Date fechaDeNacimiento;
@@ -58,6 +58,7 @@ public class Dueno {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 
 
 	public String getApellido() {

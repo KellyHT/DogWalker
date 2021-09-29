@@ -16,15 +16,18 @@ public class CaracterRepository implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	
 	@PersistenceContext(unitName="pdw")
 	private EntityManager em;
 	
 	public List<Caracter> findAll() throws Exception {
-		List<Caracter> lista = new ArrayList<>(); 
-		TypedQuery<Caracter> query = em.createQuery("SELECT p FROM Caracter p", Caracter.class);
-		lista = query.getResultList();
-		return lista;		
+		List<Caracter> caracters = new ArrayList<>();
+		TypedQuery<Caracter> query = em.createQuery("SELECT s FROM Caracter s", Caracter.class);
+		caracters = query.getResultList();
+		return caracters;
 	}
 	
+	
+
+
+
 }

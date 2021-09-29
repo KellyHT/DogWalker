@@ -1,6 +1,7 @@
 package pe.dogwalker.controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -40,26 +41,46 @@ public class LoginController implements Serializable{
 	public void init() {
 		dueno = new Dueno();
 		paseador = new Paseador();
+		duenos = new ArrayList<Dueno>();
 	}
 	
 	public void resetForm() {
 		this.dueno = new Dueno();
 	}
-	public void verificarUsuario() {
-		System.out.print("verificar cuenta");
-		String view = "";
+	
+	public String verificarUsuario() {
+		String view ="";
 		try {
-			duenos = duenoService.findByCorreoContrasena(this.dueno.getCorreo().trim().toString(),this.dueno.getContrasena().trim().toString());
-			Message.messageInfo("Inicio de sesiÛn exitoso");
-			//view = "/dueno/list";
+			duenos = duenoService.findByCorreoContrasena(this.correo,this.contrasena);
 			resetForm();
-			
+			if (duenos.isEmpty()) {
+				paseadores = paseadorService.findByCorreoContrasena(this.correo,this.contrasena);
+				if (paseadores.isEmpty()) {
+					Message.messageError("Datos incorrectos");
+					
+				}else {					
+					Message.messageInfo("Se ha iniciado sesi√≥n como Paseador");
+					view = "inicioPaseador.xhtml";
+				}
+			}else {
+				
+				Message.messageInfo("Se ha iniciado sesi√≥n como Due√±o");
+				view = "inicioDueno.xhtml";
+			}
 		} catch (Exception e) {
-			Message.messageError("No se puede iniciar sesiÛn " + e.getMessage());
-			resetForm();
+			Message.messageError("Error " + e.getMessage());
 		}
+		return view;
 	}
 
+	public String cerrar() {
+		String view ="";
+	
+			view = "master.xhtml";
+		
+		return view;
+	}
+	
 	public DuenoService getDuenoService() {
 		return duenoService;
 	}
@@ -108,5 +129,24 @@ public class LoginController implements Serializable{
 		this.paseadores = paseadores;
 	}
 
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+	public String getContrasena() {
+		return contrasena;
+	}
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
+	}
+
+	
+	
+	
 
 }

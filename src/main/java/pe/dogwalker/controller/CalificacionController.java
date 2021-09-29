@@ -9,35 +9,56 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.primefaces.event.SelectEvent;
-
 import pe.dogwalker.model.entity.Calificacion;
+import pe.dogwalker.model.entity.Dueno;
+import pe.dogwalker.model.entity.Paseador;
 import pe.dogwalker.service.CalificacionService;
+import pe.dogwalker.service.DuenoService;
+import pe.dogwalker.service.PaseadorService;
 import pe.dogwalker.util.Message;
 
 @Named
 @SessionScoped
-public class CalificacionController implements Serializable {
-///HOLAAAA
-	/*
-	private static final long serialVersionUID = 1L;
+public class CalificacionController implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+	
 	@Inject
 	private CalificacionService calificacionService;
-
+	
+	@Inject
+	private DuenoService duenoService;
+	
+	@Inject
+	private PaseadorService paseadorService;
+	
 	private Calificacion calificacion;
 	private List<Calificacion> calificacions;
 	private Calificacion calificacionSelect;
-
+	
+	private Dueno dueno;
+	private List<Dueno> duenos;
+	
+	
+	private Paseador paseador;
+	private List<Paseador> paseadores;
+	
+	
 	private String filterName;
-
+	
 	@PostConstruct
 	public void init() {
 		calificacion = new Calificacion();
+		dueno = new Dueno();
+		paseador = new Paseador();
 		calificacions = new ArrayList<Calificacion>();
+		duenos = new ArrayList<Dueno>();
+		paseadores = new ArrayList<Paseador>();
+		
 		getAllCalificacions();
 	}
-
+	
+	
 	public void getAllCalificacions() {
 		try {
 			calificacions = calificacionService.findAll();
@@ -45,53 +66,73 @@ public class CalificacionController implements Serializable {
 			Message.messageError("Error al cargar Calificacionos: " + e.getMessage());
 		}
 	}
-
+	
 	public String newCalificacion() {
-		return "/calificacion/insert";
+		try {
+			this.duenos = duenoService.findAll();
+			this.paseadores = paseadorService.findAll();
+			resetForm();
+		} catch (Exception e) {
+		}
+		return "/calificacion/registrarCuentaCalificacion";
 	}
-
+	
 	public void resetForm() {
 		this.filterName = "";
 		this.calificacion = new Calificacion();
 	}
-
+	
 	public String listCalificacion() {
 		return "/calificacion/list";
 	}
-
+	
 	public String saveCalificacion() {
+
 		String view = "";
 		try {
-			if (calificacion.getIdCalificacion() != null) {
+			if (calificacion.getIdCalificacion() != null) 
+			{
+				calificacion.setDueno(dueno);
+				calificacion.setPaseador(paseador);
 				calificacionService.update(calificacion);
-				Message.messageInfo("Registro Actualizado Correctamente");
-			} else {
+				Message.messageInfo("Calificación actualizada");
+			}
+			else 
+			{
+				calificacion.setDueno(dueno);
+				calificacion.setPaseador(paseador);
 				calificacionService.insert(calificacion);
-				Message.messageInfo("Registro Insertado Correctamente");
+				Message.messageInfo("Calificación registrada");				
 			}
 			this.getAllCalificacions();
 			resetForm();
 			view = "/calificacion/list";
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 		}
 		return view;
 	}
-
+	
 	public String editCalificacion() {
 		String view = "";
-		try {
-			if (this.calificacionSelect != null) {
+		try 
+		{
+			if (this.calificacionSelect != null) 
+			{
 				this.calificacion = calificacionSelect;
 				view = "/calificacion/update";
-			} else {
-				Message.messageError("Debe Seleccionar un calificaciono");
 			}
-		} catch (Exception e) {
-			Message.messageError("Error  en calificaciono: " + e.getMessage());
+			else 
+			{
+				Message.messageError("Debe Seleccionar una calificacion");
+			}
+		} 
+		catch (Exception e) {
+			Message.messageError("Error: " + e.getMessage());
 		}
 		return view;
 	}
-
+	
 	public String deleteCalificacion() {
 		String view = "";
 		try {
@@ -105,7 +146,7 @@ public class CalificacionController implements Serializable {
 		}
 		return view;
 	}
-
+	
 	public void searchCalificacionByName() {
 		try {
 			calificacions = calificacionService.findByName(this.filterName.trim());
@@ -118,10 +159,89 @@ public class CalificacionController implements Serializable {
 		}
 	}
 
-	public void calificacionSelect(SelectEvent e) {
-		this.calificacionSelect = (Calificacion) e.getObject();
+
+	public Calificacion getCalificacion() {
+		return calificacion;
 	}
 
-*/
+
+	public void setCalificacion(Calificacion calificacion) {
+		this.calificacion = calificacion;
+	}
+
+
+	public List<Calificacion> getCalificacions() {
+		return calificacions;
+	}
+
+
+	public void setCalificacions(List<Calificacion> calificacions) {
+		this.calificacions = calificacions;
+	}
+
+
+	public Calificacion getCalificacionSelect() {
+		return calificacionSelect;
+	}
+
+
+	public void setCalificacionSelect(Calificacion calificacionSelect) {
+		this.calificacionSelect = calificacionSelect;
+	}
+
+
+	public Dueno getDueno() {
+		return dueno;
+	}
+
+
+	public void setDueno(Dueno dueno) {
+		this.dueno = dueno;
+	}
+
+
+	public List<Dueno> getDuenos() {
+		return duenos;
+	}
+
+
+	public void setDuenos(List<Dueno> duenos) {
+		this.duenos = duenos;
+	}
+
+
+	public Paseador getPaseador() {
+		return paseador;
+	}
+
+
+	public void setPaseador(Paseador paseador) {
+		this.paseador = paseador;
+	}
+
+
+	public List<Paseador> getPaseadores() {
+		return paseadores;
+	}
+
+
+	public void setPaseadores(List<Paseador> paseadores) {
+		this.paseadores = paseadores;
+	}
+
+
+	public String getFilterName() {
+		return filterName;
+	}
+
+
+	public void setFilterName(String filterName) {
+		this.filterName = filterName;
+	}
+	
+
+	
+
+
 	
 }

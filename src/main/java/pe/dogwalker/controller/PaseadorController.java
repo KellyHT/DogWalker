@@ -75,7 +75,7 @@ public class PaseadorController implements Serializable{
 			resetForm();
 		} catch (Exception e) {
 		}
-		return "/paseador/registrarCuentaPaseador";
+		return "/registrarCuentaPaseador";
 	}
 	
 	public void resetForm() {
@@ -108,7 +108,7 @@ public class PaseadorController implements Serializable{
 			}
 			this.getAllPaseadors();
 			resetForm();
-			view = "/paseador/list";
+			view = "inicioPaseador.xhtml";
 		} 
 		catch (Exception e) {
 		}
@@ -161,24 +161,24 @@ public class PaseadorController implements Serializable{
 		}
 	}
 	
-	public void searchPaseadorByNombreDistrito() {
+	public String searchPaseadorByNombreDistrito() {
+		String view ="";
 		try {
 			
 			paseadores = paseadorService.findByDistrito(this.filterNombreDistrito.trim());
-			//distritos = distritoService.findByName(this.filterNombreDistrito.trim());
-			
-			
-			
-			//paseadores = paseadorService.findByDistrito(this.distritos.get(0).getIdDistrito().toString().trim());
 			resetForm();
 			if (paseadores.isEmpty()) {
-				Message.messageInfo("No se encontraron paseadoros");
+				 
+			}
+			else {
+				view = "/prueba/list";
 			}
 		} catch (Exception e) {
 			Message.messageError("Error en paseadoro " + e.getMessage());
+			 
 		}
+		return view;
 	}
-	
 	
 	public void paseadorSelect(SelectEvent e) {
 		this.paseadorSelect = (Paseador)e.getObject();

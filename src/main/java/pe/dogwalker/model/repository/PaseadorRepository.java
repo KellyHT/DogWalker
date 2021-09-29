@@ -47,15 +47,15 @@ public class PaseadorRepository implements  Serializable{
 		paseadores = query.getResultList();
 		return paseadores;		
 	}
-	
-	/*public List<Paseador> findByDistrito(String idDistrito) throws Exception {
-		List<Paseador> paseadores = new ArrayList<>(); 
-		TypedQuery<Paseador> query = em.createQuery("SELECT p FROM Paseador p WHERE p.idDistrito LIKE ?1", Paseador.class);
-		query.setParameter(1, idDistrito);
-		paseadores = query.getResultList();
-		return paseadores;		
-	}	
-*/
+	public List<Paseador> findByCorreoContrasena(String correo, String contrasena)  {
+		List<Paseador> lista = new ArrayList<>();
+		TypedQuery<Paseador> query = em.createQuery("SELECT p FROM Paseador p WHERE p.correo LIKE ?1 and p.contrasena LIKE ?2 ", Paseador.class);
+		query.setParameter(1, correo);
+		query.setParameter(2,contrasena);
+		System.out.print("query " + query);
+		lista = query.getResultList();
+		return lista;
+	}
 	
 	public List<Paseador> findByDistrito(String nombre) throws Exception {
 	List<Paseador> paseadores = new ArrayList<>(); 

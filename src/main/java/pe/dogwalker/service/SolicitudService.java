@@ -23,6 +23,7 @@ public class SolicitudService implements Serializable {
 		return solicitudRepository.insert(solicitud);
 	}
 	
+	@Transactional
 	public Long update(Solicitud solicitud) throws Exception {
 		return solicitudRepository.update(solicitud);
 	}

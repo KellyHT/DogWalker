@@ -6,6 +6,7 @@ body{
 	padding: 50px 0;
 }
 
+
 .registration-form form{
       background-color: #fff;
     max-width: 600px;
@@ -154,4 +155,7 @@ body{
 
     width: 50px;
 
+}
+.e {
+	height:100px;
 }

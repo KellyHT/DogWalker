@@ -1,5 +1,6 @@
 package pe.dogwalker.model.entity;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -38,6 +39,9 @@ public class Solicitud {
 	@JoinColumn(name="idTiempo", nullable=false)
 	private Tiempo tiempo;
 
+	
+	private Timestamp horaInicio;
+	private Timestamp horaFin;
 
 	public Long getIdSolicitud() {
 		return idSolicitud;
@@ -95,5 +99,31 @@ public class Solicitud {
 		this.tiempo = tiempo;
 	}
 
+	public Date getFechaSolicitud() {
+		return fechaSolicitud;
+	}
+
+	public void setFechaSolicitud(Date fechaSolicitud) {
+		this.fechaSolicitud = fechaSolicitud;
+	}
+
+	public Timestamp getHoraInicio() {
+		return horaInicio;
+	}
+
+	public void setHoraInicio(Timestamp horaInicio) {
+		this.horaInicio = horaInicio;
+	}
+
+	public Timestamp getHoraFin() {
+		return horaFin;
+	}
+
+	public void setHoraFin(Timestamp horaFin) {
+		this.horaFin = horaFin;
+	}
+
+	
+	
 
 }
