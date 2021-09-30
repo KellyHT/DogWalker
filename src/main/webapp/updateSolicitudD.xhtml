@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+
+	<ui:composition template="/WEB-INF/templates/master.xhtml">
+		<ui:define name="content">
+			<h:form id="frm">
+				<p:growl id="men" />
+
+				<p:toolbar>
+					<f:facet name="right">
+						<p:commandButton value="Guardar" icon="ui-icon-disk"
+							action="#{solicitudController.saveSolicitud()}" ajax="false" />
+
+						<p:commandButton value="Regresar" icon="ui-icon-disk"
+							action="#{solicitudController.GestionarSolicitudesDueno()}" immediate="true"
+							ajax="false" />
+					</f:facet>
+				</p:toolbar>
+				<p:panelGrid id="panGridCan" columns="2" style="width:100%">
+					<p:outputLabel value="Fecha de Servicio" for="fechaSolicitud" />
+					<p:calendar id="fechaSolicitud" pattern="dd/MM/yyyy"
+						value="#{solicitudController.solicitud.fechaSolicitud}"
+						timeZone="UTC" required="true">
+					</p:calendar>
+
+
+					<p:outputLabel value="HoraInicio" for="txtHoraInicio" />
+					<p:inputText id="txtHoraInicio" required="true" maxlength="45"
+						value="#{solicitudController.solicitud.horaInicio}" />
+					
+						<p:outputLabel value="HoraFin" for="txtHoraFin" />
+					<p:inputText id="txtHoraFin" required="true" maxlength="45"
+						value="#{solicitudController.solicitud.horaFin}" />
+
+					<p:outputLabel value="Tiempo" for="cbotiempos" />
+					<p:selectOneMenu id="cbotiempos" required="true" effect="drop"
+						value="#{solicitudController.tiempo}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Seleccione una opción"
+							noSelectionOption="true" itemValue="" />
+						<f:selectItems value="#{solicitudController.tiempos}" var="tiempo"
+							itemLabel="#{tiempo.tipo}" itemValue="#{tiempo}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="Dueño" for="cboduenos" />
+					<p:selectOneMenu id="cboduenos" required="true" effect="drop"
+						value="#{solicitudController.dueno}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Seleccione una opción"
+							noSelectionOption="true" itemValue="" />
+						<f:selectItems value="#{solicitudController.duenos}" var="dueno"
+							itemLabel="#{dueno.nombre}" itemValue="#{dueno}" />
+					</p:selectOneMenu>
+
+
+					<p:outputLabel value="Paseador" for="cbopaseadores" />
+					<p:selectOneMenu id="cbopaseadores" required="true" effect="drop"
+						value="#{solicitudController.paseador}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Seleccione una opción"
+							noSelectionOption="true" itemValue="" />
+						<f:selectItems value="#{solicitudController.paseadores}"
+							var="paseador" itemLabel="#{paseador.nombre}"
+							itemValue="#{paseador}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="Monto" for="txtMonto" />
+					<p:inputText id="txtMonto" required="true" maxlength="45"
+						value="#{solicitudController.solicitud.monto}" /> 
+						
+						
+					<p:outputLabel value="Estado" for="cboEstado" />
+					<p:selectOneMenu id="cboEstado" required="true" effect="drop"
+						value="#{solicitudController.estado}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Seleccione una opción"
+							noSelectionOption="true" itemValue="" />
+						<f:selectItems value="#{solicitudController.estados}"
+							var="estado" itemLabel="#{estado.nombre}"
+							itemValue="#{estado}" />
+					</p:selectOneMenu>
+
+				</p:panelGrid>
+				<br></br>
+
+
+
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+
+</body>
+</html>

@@ -21,7 +21,6 @@ public class Dueno {
 	private String nombre;
 	@Column(name = "apellido", nullable = false, length = 100)
 	private String apellido;
-	
 
 	@Column(name = "correo", nullable = false, length = 100)
 	private String correo;
@@ -30,7 +29,6 @@ public class Dueno {
 
 	private Date fechaDeNacimiento;
 
-	
 	@ManyToOne
 	@JoinColumn(name = "idDistrito", nullable = false)
 	private Distrito distrito;

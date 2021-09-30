@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+<h:head>
+	<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
+		rel="stylesheet" />
+	<link rel="stylesheet" href="resources/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="resources/css/bootstrap-datetimepicker.min.css" />
+	<link rel="stylesheet" href="resources/css/style.css" />
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</h:head>
+
+<h:body>
+	<h:panelGroup layout="block" styleClass="registration-form">
+		<h:form>
+
+			<div class="form-icon">
+				<span><i class="icon icon-user"></i></span>
+			</div>
+
+
+	<div class="form-group">
+				<h:inputText type="text" class="form-control item" i="email"
+					pt:placeholder="email" value="#{paseadorController.correo}" />
+			</div>
+			<div class="form-group">
+				<h:inputSecret type="text" class="form-control item" i="pasword" 
+					pt:placeholder="contraseña"
+					value="#{paseadorController.contrasena}" />
+			</div>
+			
+
+			
+			<div class="text-center p-t-115">
+				<span class="txt1"> ¿Aún no tienes cuenta? </span> <a class="txt2"
+					href="#{paseadorController.newPaseador()}"> Regístrate </a>
+			</div>
+
+
+	<h:commandButton value="Iniciar sesión"
+				styleClass=" btn btn-block create-account "
+			action="#{paseadorController.verificarUsuario()}" ajax="false" />
+
+		</h:form>
+
+	</h:panelGroup>
+	
+</h:body>
+
+</html>

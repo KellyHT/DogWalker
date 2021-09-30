@@ -1,6 +1,5 @@
 package pe.dogwalker.model.entity;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -28,11 +27,11 @@ public class Solicitud {
 	
 	private Date fechaSolicitud;
 	
-	@Column(name="aceptacion", nullable=false, length=50)
+	@Column(name="aceptacion", nullable=true, length=50)
 	private String aceptacion;
 	
 	@ManyToOne
-	@JoinColumn(name="idEstado", nullable=false)
+	@JoinColumn(name="idEstado", nullable=true)
 	private Estado estado;
 	
 	@ManyToOne
@@ -40,8 +39,11 @@ public class Solicitud {
 	private Tiempo tiempo;
 
 	
-	private Timestamp horaInicio;
-	private Timestamp horaFin;
+	private String horaInicio;
+	private String horaFin;
+	
+	@Column(name="monto", nullable=true)
+	private Double monto; 
 
 	public Long getIdSolicitud() {
 		return idSolicitud;
@@ -107,20 +109,32 @@ public class Solicitud {
 		this.fechaSolicitud = fechaSolicitud;
 	}
 
-	public Timestamp getHoraInicio() {
+	
+
+
+
+	public String getHoraInicio() {
 		return horaInicio;
 	}
 
-	public void setHoraInicio(Timestamp horaInicio) {
+	public void setHoraInicio(String horaInicio) {
 		this.horaInicio = horaInicio;
 	}
 
-	public Timestamp getHoraFin() {
+	public String getHoraFin() {
 		return horaFin;
 	}
 
-	public void setHoraFin(Timestamp horaFin) {
+	public void setHoraFin(String horaFin) {
 		this.horaFin = horaFin;
+	}
+
+	public Double getMonto() {
+		return monto;
+	}
+
+	public void setMonto(Double monto) {
+		this.monto = monto;
 	}
 
 	

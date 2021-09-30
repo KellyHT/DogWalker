@@ -10,10 +10,12 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import pe.dogwalker.model.entity.Dueno;
+import pe.dogwalker.model.entity.Estado;
 import pe.dogwalker.model.entity.Paseador;
 import pe.dogwalker.model.entity.Solicitud;
 import pe.dogwalker.model.entity.Tiempo;
 import pe.dogwalker.service.DuenoService;
+import pe.dogwalker.service.EstadoService;
 import pe.dogwalker.service.PaseadorService;
 import pe.dogwalker.service.SolicitudService;
 import pe.dogwalker.service.TiempoService;
@@ -37,14 +39,20 @@ public class SolicitudController implements Serializable{
 	@Inject
 	private TiempoService tiempoService;
 	
+	@Inject
+	private EstadoService estadoService;
+	
 	
 	private Solicitud solicitud;
 	private List<Solicitud> solicitudes;
 	private Solicitud solicitudSelect;
+
 	
 	private Dueno dueno;
 	private List<Dueno> duenos;
 	
+	private Estado estado;
+	private List<Estado> estados;
 	
 	private Paseador paseador;
 	private List<Paseador> paseadores;
@@ -61,8 +69,10 @@ public class SolicitudController implements Serializable{
 		dueno = new Dueno();
 		paseador = new Paseador();
 		tiempo = new Tiempo();
+		estado = new Estado();
 		solicitudes = new ArrayList<Solicitud>();
 		duenos = new ArrayList<Dueno>();
+		estados = new ArrayList<Estado>();
 		paseadores = new ArrayList<Paseador>();
 		tiempos = new ArrayList<Tiempo>();
 		getAllSolicituds();
@@ -82,10 +92,11 @@ public class SolicitudController implements Serializable{
 			this.duenos = duenoService.findAll();
 			this.paseadores = paseadorService.findAll();
 			this.tiempos = tiempoService.findAll();
+			this.estados=estadoService.findAll();
 			resetForm();
 		} catch (Exception e) {
 		}
-		return "/solicitud/registrarCuentaSolicitud";
+		return "/insertSolicitudDueno";
 	}
 	
 	public void resetForm() {
@@ -97,17 +108,28 @@ public class SolicitudController implements Serializable{
 		return "/solicitud/list";
 	}
 	
-	public String saveSolicitud() {
 
+	
+	public String GestionarSolicitudesDueno(){
+	
+		return "/GestionarSolicitudesDueno";
+	}
+	
+	public String saveSolicitud() {
+	
+		this.estado.setNombre("Pendiente");
 		String view = "";
 		try {
 			if (solicitud.getIdSolicitud() != null) 
 			{
+				
 				solicitud.setDueno(dueno);
 				solicitud.setPaseador(paseador);
 				solicitud.setTiempo(tiempo);
+				solicitud.setEstado(estado);
 				solicitudService.update(solicitud);
-				Message.messageInfo("Calificación actualizada");
+				Message.messageInfo("Solicitud actualizada");
+				view = "/GestionarSolicitudesPaseador";
 			}
 			else 
 			{
@@ -115,11 +137,13 @@ public class SolicitudController implements Serializable{
 				solicitud.setPaseador(paseador);
 				solicitud.setTiempo(tiempo);
 				solicitudService.insert(solicitud);
-				Message.messageInfo("Calificación registrada");				
+				
+				Message.messageInfo("Solicitud registrada");
+				view = "/GestionarSolicitudesDueno";
 			}
 			this.getAllSolicituds();
 			resetForm();
-			view = "/solicitud/list";
+			
 		} 
 		catch (Exception e) {
 		}
@@ -133,7 +157,7 @@ public class SolicitudController implements Serializable{
 			if (this.solicitudSelect != null) 
 			{
 				this.solicitud = solicitudSelect;
-				view = "/solicitud/update";
+				view = "/updateSolicitudD";
 			}
 			else 
 			{
@@ -146,19 +170,30 @@ public class SolicitudController implements Serializable{
 		return view;
 	}
 	
+	
 	public String deleteSolicitud() {
 		String view = "";
-		try {
-			this.solicitud = solicitudSelect;
-			solicitudService.delete(this.solicitud);
-			Message.messageInfo("Registro Eliminado Correctamente");
-			this.getAllSolicituds();
-			view = "/solicitud/list";
-		} catch (Exception e) {
-			Message.messageError("Error en solicitudo " + e.getMessage());
+		try 
+		{
+			if (this.solicitudSelect != null) 
+			{
+				this.solicitud = solicitudSelect;
+				solicitudService.delete(this.solicitud);
+				Message.messageInfo("Registro Eliminado Correctamente");
+				this.getAllSolicituds();
+			}
+			else 
+			{
+				Message.messageError("Debe Seleccionar un solicitudo");
+			}
+		} 
+		catch (Exception e) {
+			Message.messageError("Error  en solicitud: " + e.getMessage());
 		}
 		return view;
 	}
+	
+
 	
 	public void searchSolicitudByName() {
 		try {
@@ -280,6 +315,26 @@ public class SolicitudController implements Serializable{
 
 	public void setFilterName(String filterName) {
 		this.filterName = filterName;
+	}
+
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+
+
+	public List<Estado> getEstados() {
+		return estados;
+	}
+
+
+	public void setEstados(List<Estado> estados) {
+		this.estados = estados;
 	}
 
 

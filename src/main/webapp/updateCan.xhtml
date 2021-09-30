@@ -15,60 +15,71 @@
 
 				<p:toolbar>
 					<f:facet name="right">
-						<p:commandButton value="Guardar" icon="ui-icon-disk"
-							action="#{canController.saveCan()}" ajax="false" />
+						<p:commandButton value="Guardar" icon="ui-icon-disk" 
+						action="#{canController.saveCan()}" ajax="false"/>
 
 						<p:commandButton value="Regresar" icon="ui-icon-disk"
-							action="#{canController.listCan()}" immediate="true"
-							ajax="false" />
+						  action="#{canController.gestionarCanes()}"
+						  immediate="true"
+						  ajax="false"/>
 					</f:facet>
 				</p:toolbar>
 
 
-
-
-				<p:panelGrid id="panGridProduct" columns="2" style="width:100%">
-					<p:outputLabel value="Nombre:" for="txtName" />
+				<p:panelGrid id="panGridCan" columns="2" style="width:100%">
+					<p:outputLabel value="Can:" for="txtName" />
 					<p:inputText id="txtName" required="true" maxlength="45"
 						value="#{canController.can.nombre}" />
-						
-					<p:outputLabel value="Raza" for="cboRaza" />	
+					
+					
+					<p:outputLabel value="Dueño" for="cboDueno" />
+					<p:selectOneMenu id="cboDueno" required="true" effect="drop"
+						value="#{canController.dueno}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Seleccione una opción"
+							noSelectionOption="true" itemValue="" />
+						<f:selectItems value="#{canController.duenos}"
+							var="dueno" itemLabel="#{dueno.nombre}"
+							itemValue="#{dueno}" />
+					</p:selectOneMenu>
+					
+					<p:outputLabel value="Raza" for="cboRaza" />
 					<p:selectOneMenu id="cboRaza" required="true" effect="drop"
 						value="#{canController.raza}"
 						converter="omnifaces.SelectItemsConverter">
 						<f:selectItem itemLabel="Seleccione una opción"
 							noSelectionOption="true" itemValue="" />
-						<f:selectItems value="#{canController.razas}" var="raza"
-							itemLabel="#{raza.nombre}" itemValue="#{raza}" />
+						<f:selectItems value="#{canController.razas}"
+							var="raza" itemLabel="#{raza.nombre}"
+							itemValue="#{raza}" />
 					</p:selectOneMenu>
-						<p:outputLabel value="Caracter" for="cboCaracter" />	
+					
+					<p:outputLabel value="fecha de Nacimiento" for="fechaNacimiento" />
+					<p:calendar id="fechaNacimiento" pattern="dd/MM/yyyy"
+						value="#{canController.can.fechaNacimiento}" timeZone="UTC"
+						required="true">
+					</p:calendar>
+					
+					<p:outputLabel value="Caracter" for="cboCaracter" />
 					<p:selectOneMenu id="cboCaracter" required="true" effect="drop"
 						value="#{canController.caracter}"
 						converter="omnifaces.SelectItemsConverter">
 						<f:selectItem itemLabel="Seleccione una opción"
 							noSelectionOption="true" itemValue="" />
-						<f:selectItems value="#{canController.caracteres}" var="caracter"
-							itemLabel="#{caracter.nombre}" itemValue="#{caracter}" />
-					</p:selectOneMenu>	
-						
-					<p:outputLabel value="Tamaño:" for="txtTamano" />
-					<p:inputText id="txtTamano" required="true" maxlength="45"
-						value="#{canController.can.tamano}" />
-						
+						<f:selectItems value="#{canController.caracteres}"
+							var="caracter" itemLabel="#{caracter.nombre}"
+							itemValue="#{caracter}" />
+					</p:selectOneMenu>
+					
+			
 						
 						
-					<p:outputLabel value="fecha de Nacimiento" for="fechaNacimiento" />
-					<p:calendar id="fechaNacimiento" pattern="dd/MM/yyyy"
-						value="#{canController.can.fechaNacimiento}" timeZone="UTC"
-						required="true">
-					</p:calendar>	
-							
-											
 					<p:outputLabel value="Descripcion" for="txtDescripcion" />
 					<p:inputText id="txtDescripcion" required="true" maxlength="45"
 						value="#{canController.can.descripcion}" />
 						
-
+						
+				
 				</p:panelGrid>
 				<br></br>
 

@@ -26,8 +26,5 @@ public class CaracterRepository implements Serializable {
 		return caracters;
 	}
 	
-	
-
-
 
 }

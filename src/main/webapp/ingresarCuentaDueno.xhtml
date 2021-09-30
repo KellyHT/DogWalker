@@ -29,34 +29,31 @@
 			</div>
 
 
-	<div class="form-group">
+			<div class="form-group">
 				<h:inputText type="text" class="form-control item" i="email"
-					pt:placeholder="email" value="#{loginController.correo}" />
+					pt:placeholder="email" value="#{duenoController.correo}" />
 			</div>
 			<div class="form-group">
-				<h:inputSecret type="text" class="form-control item" i="pasword" 
-					pt:placeholder="contraseña"
-					value="#{loginController.contrasena}" />
+				<h:inputSecret type="text" class="form-control item" i="pasword"
+					pt:placeholder="contraseña" value="#{duenoController.contrasena}" />
 			</div>
-			
 
-			<div class="text-center p-t-115">
-				<a class="txt2" href="#"> ¿Olvidaste tu contraseña? </a>
-			</div>
+
+
 			<div class="text-center p-t-115">
 				<span class="txt1"> ¿Aún no tienes cuenta? </span> <a class="txt2"
-					href="#"> Regístrate </a>
+					href="#{duenoController.newDueno()}"> Regístrate </a>
 			</div>
 
 
-	<h:commandButton value="Iniciar sesión"
+			<h:commandButton value="Iniciar sesión"
 				styleClass=" btn btn-block create-account "
-			action="#{loginController.verificarUsuario()}" ajax="false" />
+				action="#{duenoController.verificarUsuario()}" ajax="false" />
 
 		</h:form>
 
 	</h:panelGroup>
-	
+
 </h:body>
 
 </html>

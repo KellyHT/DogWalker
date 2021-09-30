@@ -31,7 +31,7 @@ public class Can {
 	
 	@Column(name="nombre", nullable=false, length=50)
 	private String nombre;
-	private Float tamano;
+	
 	
 	@Column(name="descripcion", nullable=false, length=120)
 	private String descripcion;
@@ -79,13 +79,6 @@ public class Can {
 		this.nombre = nombre;
 	}
 
-	public Float getTamano() {
-		return tamano;
-	}
-
-	public void setTamano(Float tamano) {
-		this.tamano = tamano;
-	}
 
 	public String getDescripcion() {
 		return descripcion;

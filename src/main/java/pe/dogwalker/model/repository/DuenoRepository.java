@@ -53,7 +53,7 @@ public class DuenoRepository implements Serializable {
 		TypedQuery<Dueno> query = em.createQuery("SELECT p FROM Dueno p WHERE p.correo LIKE ?1 and p.contrasena LIKE ?2 ", Dueno.class);
 		query.setParameter(1, correo);
 		query.setParameter(2, contrasena);
-		System.out.print("query " + query);
+		//System.out.print("query " + query);
 		lista = query.getResultList();
 		return lista;
 	}

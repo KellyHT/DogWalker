@@ -19,8 +19,7 @@ public class CanService implements Serializable {
 	private CanRepository canRepository;
 	
 	@Transactional
-	public Long insert(Can can) throws Exception {
-		
+	public Long insert(Can can) throws Exception {	
 		return canRepository.insert(can);
 	}
 	@Transactional
@@ -37,8 +36,11 @@ public class CanService implements Serializable {
 		return canRepository.findAll();
 	}
 	
-	public List<Can> findByName(String name) throws Exception {
-		return canRepository.findByName(name);
+	
+	
+	public List<Can> listarCanesPorDueno(Long idDueno)throws Exception{
+		return canRepository.listarCanesPorDueno(idDueno);
+		
 	}
 	
 }

@@ -19,13 +19,9 @@ public class CanRepository implements Serializable {
 	@PersistenceContext(unitName="pdw")
 	private EntityManager em;
 	
-	public Long insert(Can can)  {
-		try {
-			em.persist(can);
-		} catch (Exception e) {
-			System.out.print("Problemaaa " + e);
-		}
-		
+	public Long insert(Can can) throws Exception {
+	
+		em.persist(can);	
 		return can.getIdCan();
 	}
 	
@@ -44,11 +40,11 @@ public class CanRepository implements Serializable {
 		lista = query.getResultList();
 		return lista;		
 	}
-	
-	public List<Can> findByName(String name) throws Exception {
+
+	public List<Can> listarCanesPorDueno(Long idDueno) throws Exception {
 		List<Can> lista = new ArrayList<>(); 
-		TypedQuery<Can> query = em.createQuery("SELECT p FROM Can p WHERE p.name LIKE ?1", Can.class);
-		query.setParameter(1, "%" + name + "%");
+		TypedQuery<Can> query = em.createQuery("SELECT p FROM Can p WHERE p.idDueno LIKE ?1", Can.class);
+		query.setParameter(1, "%" + idDueno + "%");
 		lista = query.getResultList();
 		return lista;		
 	}	

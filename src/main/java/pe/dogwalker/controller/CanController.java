@@ -39,7 +39,6 @@ public class CanController implements Serializable{
 	@Inject
 	private DuenoService duenoService;
 	
-	
 	private Can can;
 	private List<Can> cans;
 	private Can canSelect;
@@ -68,7 +67,6 @@ public class CanController implements Serializable{
 		razas = new ArrayList<Raza>();
 		caracteres = new ArrayList<Caracter>();
 		duenos = new ArrayList<Dueno>();
-		
 		getAllCans();
 	}
 	
@@ -86,10 +84,11 @@ public class CanController implements Serializable{
 		try {
 			this.razas = razaService.findAll();
 			this.caracteres = caracterService.findAll();
+			this.duenos = duenoService.findAll();
 			resetForm();
 		} catch (Exception e) {
 		}
-		return "/can/insert";
+		return "/insertCan";
 	}
 	
 	public void resetForm() {
@@ -103,29 +102,35 @@ public class CanController implements Serializable{
 	
 	public String saveCan() {
 
-		String view = "";
+		String view="" ;
 		try {
 			if (can.getIdCan() != null) 
 			{
 				can.setRaza(raza);
 				can.setCaracter(caracter);
-				//can.setDueno(dueno);
+				can.setDueno(dueno);
 				canService.update(can);
-				
+				view = "/GestionarCanes";
 				Message.messageInfo("Registro Actualizado Correctamente");
 			}
 			else 
 			{
 				can.setRaza(raza);
 				can.setCaracter(caracter);
+				can.setDueno(dueno);
 				canService.insert(can);
-				Message.messageInfo("Registro Insertado Correctamente");				
+				Message.messageInfo("Registro Insertado Correctamente");
+				view = "/GestionarCanes";
 			}
 			this.getAllCans();
+			//this.listarCanesPorDueno(dueno.getId());
+			
 			resetForm();
-			view = "/can/list";
+			
 		} 
 		catch (Exception e) {
+			Message.messageInfo("error "+ e);
+			System.out.println("error "+ e);
 		}
 		return view;
 	}
@@ -137,7 +142,7 @@ public class CanController implements Serializable{
 			if (this.canSelect != null) 
 			{
 				this.can = canSelect;
-				view = "/can/update";
+				view = "updateCan";
 			}
 			else 
 			{
@@ -157,24 +162,20 @@ public class CanController implements Serializable{
 			canService.delete(this.can);
 			Message.messageInfo("Registro Eliminado Correctamente");
 			this.getAllCans();
-			view = "/can/list";
+			view = "GestionarCanes";
 		} catch (Exception e) {
 			Message.messageError("Error en cano " + e.getMessage());
 		}
 		return view;
 	}
 	
-	public void searchCanByName() {
-		try {
-			cans = canService.findByName(this.filterName.trim());
-			resetForm();
-			if (cans.isEmpty()) {
-				Message.messageInfo("No se encontraron canos");
-			}
-		} catch (Exception e) {
-			Message.messageError("Error en cano " + e.getMessage());
-		}
+
+	
+	public String gestionarCanes() {
+		
+		return "/GestionarCanes";
 	}
+
 	
 	public void canSelect(SelectEvent e) {
 		this.canSelect = (Can)e.getObject();

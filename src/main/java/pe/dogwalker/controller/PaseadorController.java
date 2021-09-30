@@ -47,6 +47,9 @@ public class PaseadorController implements Serializable{
 	private String filterName;
 	private String filterNombreDistrito;
 	
+	private String correo;
+	private String contrasena;
+	
 	@PostConstruct
 	public void init() {
 		paseador = new Paseador();
@@ -84,10 +87,7 @@ public class PaseadorController implements Serializable{
 		this.paseador = new Paseador();
 	}
 	
-	public String listPaseador() {
-		return "/prueba/list";
-	}
-	
+
 	public String savePaseador() {
 
 		String view = "";
@@ -98,17 +98,19 @@ public class PaseadorController implements Serializable{
 				paseador.setPersonalidad(personalidad);
 				paseadorService.update(paseador);
 				Message.messageInfo("Registro Actualizado Correctamente");
+				view = "menuPaseador";
 			}
 			else 
 			{
 				paseador.setDistrito(distrito);
 				paseador.setPersonalidad(personalidad);
 				paseadorService.insert(paseador);
-				Message.messageInfo("Registro Insertado Correctamente");				
+				Message.messageInfo("Registro Insertado Correctamente");
+				view = "inicioPaseador.xhtml";
 			}
 			this.getAllPaseadors();
 			resetForm();
-			view = "inicioPaseador.xhtml";
+			
 		} 
 		catch (Exception e) {
 		}
@@ -116,38 +118,22 @@ public class PaseadorController implements Serializable{
 	}
 	
 	public String editPaseador() {
-		String view = "";
-		try 
-		{
-			if (this.paseadorSelect != null) 
-			{
-				this.paseador = paseadorSelect;
-				view = "/prueba/update";
-			}
-			else 
-			{
-				Message.messageError("Debe Seleccionar un paseadoro");
-			}
-		} 
-		catch (Exception e) {
-			Message.messageError("Error  en dueño: " + e.getMessage());
+		String view ="";
+		try {
+			this.distritos = distritoService.findAll();
+			this.personalidades= personalidadService.findAll();
+			
+			 view = "/editarCuentaPaseador";
+			
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
-		return view;
+		
+			return view ;
+			
 	}
 	
-	public String deletePaseador() {
-		String view = "";
-		try {
-			this.paseador = paseadorSelect;
-			paseadorService.delete(this.paseador);
-			Message.messageInfo("Registro Eliminado Correctamente");
-			this.getAllPaseadors();
-			view = "/prueba/list";
-		} catch (Exception e) {
-			Message.messageError("Error en paseadoro " + e.getMessage());
-		}
-		return view;
-	}
+
 	
 	public void searchPaseadorByName() {
 		try {
@@ -171,7 +157,7 @@ public class PaseadorController implements Serializable{
 				 
 			}
 			else {
-				view = "/prueba/list";
+				view = "/listapaseador";
 			}
 		} catch (Exception e) {
 			Message.messageError("Error en paseadoro " + e.getMessage());
@@ -180,6 +166,37 @@ public class PaseadorController implements Serializable{
 		return view;
 	}
 	
+	
+	public String verificarUsuario() {
+		String view ="";
+		try {
+			paseadores = paseadorService.findByCorreoContrasena(this.correo, this.contrasena);
+			resetForm();
+			if (paseadores.isEmpty()) {
+				view = "ingresarCuentaPaseador.xhtml";
+				
+			
+			}else {
+				this.paseador = paseadores.get(0);
+				Message.messageInfo("Se ha iniciado sesión como Dueño");
+				view = "inicioPaseador.xhtml";
+			}
+		} catch (Exception e) {
+			Message.messageError("Error " + e.getMessage());
+		}
+		return view;
+	}
+	
+	public String solicitudPaseador(){
+		
+		return "/GestionarSolicitudesPaseador";
+	}
+	
+	
+public String menuPaseador(){
+		
+		return "/menuPaseador";
+	}
 	public void paseadorSelect(SelectEvent e) {
 		this.paseadorSelect = (Paseador)e.getObject();
 	}
@@ -312,6 +329,26 @@ public class PaseadorController implements Serializable{
 
 	public void setFilterNombreDistrito(String filterNombreDistrito) {
 		this.filterNombreDistrito = filterNombreDistrito;
+	}
+
+
+	public String getCorreo() {
+		return correo;
+	}
+
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+
+	public String getContrasena() {
+		return contrasena;
+	}
+
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 	
 	

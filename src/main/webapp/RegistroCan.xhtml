@@ -10,76 +10,119 @@
 
 <h:head>
 	<link
-		href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
-		rel="stylesheet" />
-	<link rel="stylesheet" href="resources/css/bootstrap.min.css" />
-	<link rel="stylesheet"
-		href="resources/css/bootstrap-datetimepicker.min.css" />
-	<link rel="stylesheet" href="resources/css/st.css" />
-	<link rel="stylesheet"
-		href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+		href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet" />
+	<link rel="stylesheet  " href="resources/css/bootstrap.min.css" />
+	<link rel="stylesheet"	href="resources/css/bootstrap-datetimepicker.min.css" />
+	<link rel="stylesheet" href="resources/css/style.css" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 </h:head>
 
 <h:body>
-	  <div class="Main-container">
-        <div class="container-register">
-            <div class="wrap-register">
+	<h:panelGroup layout="block" styleClass="registration-form">
+		<h:form>
 
-                <div class="reg-pic">
-                    <img src="resources/img/chow-chow-dog-photo.jpg" alt="IMG"/>
+		 <div class="reg-pic" align="center">
+                    <img src="resources/img/chow-chow-dog-photo.jpg" alt="IMG" width="150" height="150" />
                 </div>
 
-                <form class="register-form">
-                    <span class="register-form-title">Registrar mascota</span>
+       
+           
 
-                    <div class="wrap-input">
-                        <h:inputText type="text" class="input" name="nombre" pt:placeholder="Nombre"/>
-   
-                    </div>
-                    <div class="wrap-input">
-                  
-                        <h:selectOneMenu  class="input" converter="omnifaces.SelectItemsConverter">
+
+			<div class="row">
+				<div class="form-group col-sm-6">
+					<h:inputText type="text" class="form-control item"
+						autocomplete="off" i=" nombreCan" pt:placeholder="Nombre "
+						value="#{canController.can.nombre}" required="true" />
+				</div>
+				
+					<div class="form-group col-sm-6">
+					<h:selectOneMenu i="cboRaza" class="form-control itemselect"
+						value="#{canController.raza}"
+						converter="omnifaces.SelectItemsConverter">
 						<f:selectItem itemLabel="Raza" itemValue="" />
-						<f:selectItems value="#{canController.can.raza}" var="d"
-							itemLabel="#{d.nombre}" itemValue="#{d}" />
-					</h:selectOneMenu>         
-                    </div>
-                    <div class="wrap-input">
-        
-                        <h:selectOneMenu  class="input" converter="omnifaces.SelectItemsConverter">
+						<f:selectItems value="#{canController.razas}" var="raza"
+							itemLabel="#{raza.nombre}" itemValue="#{raza}" />
+					</h:selectOneMenu>
+
+					</div>
+				
+				<div class="form-group col-sm-6">
+					<h:selectOneMenu i="cboCaracter" class="form-control itemselect"
+						value="#{canController.caracter}"
+						converter="omnifaces.SelectItemsConverter">
 						<f:selectItem itemLabel="Caracter" itemValue="" />
-						<f:selectItems value="#{canController.can.raza}" var="d"
-							itemLabel="#{d.nombre}" itemValue="#{d}" />
-					</h:selectOneMenu>                           
-                    </div>
-                    <div class="wrap-input">
-                        <h:inputText type="text" class="input" name="Tamaño" pt:placeholder="Tamaño" required="true"/>           
-                    </div>
-                   <div class="wrap-input">
-                    <p:calendar id="fechaMotor" pattern="dd/MM/yyyy" class="input" timeZone="UTC"
+						<f:selectItems value="#{canController.caracteres}" var="caracter"
+							itemLabel="#{caracter.nombre}" itemValue="#{carcater}" />
+					</h:selectOneMenu>
+
+					</div>
+				
+				
+
+			</div>
+
+			<div class="form-group">
+				<h:inputText type="text" class="form-control item" i="Tamaño"
+					pt:placeholder="Tamaño" value="#{canController.can.tamano}" />
+			</div>
+			
+	
+				<div class="form-group col-sm-6">
+					<div class=" form group date" id="id_0">
+						<p:calendar id="fechaCan" pattern="dd/MM/yyyy"
+							value="#{canController.can.fechaNacimiento}" timeZone="UTC"
 							required="true" pt:placeholder="Fecha de nacimiento">
 						</p:calendar>
 					</div>
-                    <div class="wrap-input">
-                        <h:inputText type="text" class="input" name="Descrip" pt:placeholder="Descripción" required="true"/>
-                    </div>
-                    
-				
-    
-                    <div class="register-form-btn-container">
-                        <button class="register-form-btn">Registrar</button>
-                    </div>
+				</div>
+			
+	
 
-                
-                  <div class="text-center p-t-2">
-                      <a href="#" class="txt2">Volver </a>
-                  </div>
+			<div class="form-group col-sm-12">
+					<div class="form-group">
+				<h:inputText type="text" class="form-control item" i="Descripción"
+					pt:placeholder="Descripción" value="#{canController.can.descripcion}" />
+			</div>
 
-                </form>
+		
+			</div>
+			
+		
+		
+			<div class="form-group col-sm-6">
+					<h:selectOneMenu i="cboDuenos" class="form-control itemselect"
+						value="#{canController.dueno}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Dueno" itemValue="" />
+						<f:selectItems value="#{canController.duenos}" var="dueno"
+							itemLabel="#{dueno.nombre}" itemValue="#{dueno}" />
+					</h:selectOneMenu>
 
-            </div>
-        </div>
-    </div>
+					</div>
+		
+
+
+			<h:commandButton value="Registrar Canino"
+				styleClass=" btn btn-block create-account "
+				action="#{canController.saveCan()}" ajax="false" />
+		</h:form>
+
+	</h:panelGroup>
+	<script src="resources/js/script.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/jquery.min.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/popper.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/bootstrap.min.js" type="text/javascript"
+		xml:space="preserve"></script>
+	<script src="resources/js/moment-with-locales.min.js"
+		type="text/javascript" xml:space="preserve"></script>
+	<script src="resources/js/bootstrap-datetimepicker.min.js"
+		type="text/javascript" xml:space="preserve"></script>
+	<script src="resources/js/main.js" type="text/javascript"
+		xml:space="preserve"></script>
 </h:body>
 
 </html>

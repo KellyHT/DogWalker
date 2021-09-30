@@ -12,8 +12,8 @@ public class Tiempo {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private Long idTiempo;
-	@Column(name="tipo", nullable=false, length=50)
-	private String tipo;
+	@Column(name="tiempo", nullable=false, length=100)
+	private String tiempo;
 
 	public Long getIdTiempo() {
 		return idTiempo;
@@ -22,10 +22,10 @@ public class Tiempo {
 		this.idTiempo = idTiempo;
 	}
 	public String getTipo() {
-		return tipo;
+		return tiempo;
 	}
 	public void setTipo(String tipo) {
-		this.tipo = tipo;
+		this.tiempo = tipo;
 	}
 
 	
