@@ -34,7 +34,13 @@ public class SolicitudController implements Serializable{
 	private DuenoService duenoService;
 	
 	@Inject
+	private DuenoController duenoController;
+	
+	@Inject
 	private PaseadorService paseadorService;
+	
+	@Inject
+	private PaseadorController paseadorController;
 	
 	@Inject
 	private TiempoService tiempoService;
@@ -89,8 +95,8 @@ public class SolicitudController implements Serializable{
 	
 	public String newSolicitud() {
 		try {
-			this.duenos = duenoService.findAll();
-			this.paseadores = paseadorService.findAll();
+			this.dueno = duenoController.getDueno();
+			this.paseador = paseadorController.getPaseadorSelect();
 			this.tiempos = tiempoService.findAll();
 			this.estados=estadoService.findAll();
 			resetForm();
@@ -110,8 +116,8 @@ public class SolicitudController implements Serializable{
 	
 
 	
-	public String GestionarSolicitudesDueno(){
-	
+	public String GestionarSolicitudesDueno() throws Exception{
+		solicitudes = solicitudService.listarSolicitudesPorDueno(dueno);
 		return "/GestionarSolicitudesDueno";
 	}
 	
@@ -141,7 +147,7 @@ public class SolicitudController implements Serializable{
 				Message.messageInfo("Solicitud registrada");
 				view = "/GestionarSolicitudesDueno";
 			}
-			this.getAllSolicituds();
+			solicitudes = solicitudService.listarSolicitudesPorDueno(dueno);
 			resetForm();
 			
 		} 
@@ -207,6 +213,9 @@ public class SolicitudController implements Serializable{
 		}
 	}
 
+	public void SolicitudesDeDueno(List<Solicitud> Solicitudes) {
+		solicitudes = Solicitudes;
+	}
 
 	public TiempoService getTiempoService() {
 		return tiempoService;
@@ -335,6 +344,46 @@ public class SolicitudController implements Serializable{
 
 	public void setEstados(List<Estado> estados) {
 		this.estados = estados;
+	}
+
+
+	public PaseadorService getPaseadorService() {
+		return paseadorService;
+	}
+
+
+	public void setPaseadorService(PaseadorService paseadorService) {
+		this.paseadorService = paseadorService;
+	}
+
+
+	public PaseadorController getPaseadorController() {
+		return paseadorController;
+	}
+
+
+	public void setPaseadorController(PaseadorController paseadorController) {
+		this.paseadorController = paseadorController;
+	}
+
+
+	public DuenoService getDuenoService() {
+		return duenoService;
+	}
+
+
+	public void setDuenoService(DuenoService duenoService) {
+		this.duenoService = duenoService;
+	}
+
+
+	public DuenoController getDuenoController() {
+		return duenoController;
+	}
+
+
+	public void setDuenoController(DuenoController duenoController) {
+		this.duenoController = duenoController;
 	}
 
 

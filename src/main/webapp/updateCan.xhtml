@@ -19,7 +19,7 @@
 						action="#{canController.saveCan()}" ajax="false"/>
 
 						<p:commandButton value="Regresar" icon="ui-icon-disk"
-						  action="#{canController.gestionarCanes()}"
+						  action="#{canController.GestionarCanes()}"
 						  immediate="true"
 						  ajax="false"/>
 					</f:facet>
@@ -36,8 +36,8 @@
 					<p:selectOneMenu id="cboDueno" required="true" effect="drop"
 						value="#{canController.dueno}"
 						converter="omnifaces.SelectItemsConverter">
-						<f:selectItem itemLabel="Seleccione una opción"
-							noSelectionOption="true" itemValue="" />
+						<f:selectItem itemLabel="#{canController.dueno.nombre}"
+							itemValue="#{canController.dueno}" />
 						<f:selectItems value="#{canController.duenos}"
 							var="dueno" itemLabel="#{dueno.nombre}"
 							itemValue="#{dueno}" />
@@ -47,8 +47,7 @@
 					<p:selectOneMenu id="cboRaza" required="true" effect="drop"
 						value="#{canController.raza}"
 						converter="omnifaces.SelectItemsConverter">
-						<f:selectItem itemLabel="Seleccione una opción"
-							noSelectionOption="true" itemValue="" />
+						<f:selectItem itemLabel="#{canController.can.raza.nombre}"  itemValue="#{canController.can.raza}" />
 						<f:selectItems value="#{canController.razas}"
 							var="raza" itemLabel="#{raza.nombre}"
 							itemValue="#{raza}" />
@@ -64,8 +63,8 @@
 					<p:selectOneMenu id="cboCaracter" required="true" effect="drop"
 						value="#{canController.caracter}"
 						converter="omnifaces.SelectItemsConverter">
-						<f:selectItem itemLabel="Seleccione una opción"
-							noSelectionOption="true" itemValue="" />
+				<f:selectItem itemLabel="#{canController.can.caracter.nombre}"  itemValue="#{canController.can.caracter}" />
+
 						<f:selectItems value="#{canController.caracteres}"
 							var="caracter" itemLabel="#{caracter.nombre}"
 							itemValue="#{caracter}" />

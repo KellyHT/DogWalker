@@ -44,4 +44,6 @@ public class DuenoService implements Serializable {
 	public List<Dueno> findByCorreoContrasena(String correo, String contrasena) throws Exception {
 		return duenoRepository.findByCorreoContrasena(correo, contrasena);
 	}
+	
+
 }

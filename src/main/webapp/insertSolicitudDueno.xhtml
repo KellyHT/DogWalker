@@ -105,8 +105,7 @@
 					<p:selectOneMenu id="cboduenos" required="true" effect="drop"
 						value="#{solicitudController.dueno}"
 						converter="omnifaces.SelectItemsConverter">
-						<f:selectItem itemLabel="Seleccione una opción"
-							noSelectionOption="true" itemValue="" />
+						<f:selectItem itemLabel="#{solicitudController.dueno.nombre}"  itemValue="#{solicitudController.dueno}" />
 						<f:selectItems value="#{solicitudController.duenos}" var="dueno"
 							itemLabel="#{dueno.nombre}" itemValue="#{dueno}" />
 					</p:selectOneMenu>
@@ -116,8 +115,8 @@
 					<p:selectOneMenu id="cbopaseadores" required="true" effect="drop"
 						value="#{solicitudController.paseador}"
 						converter="omnifaces.SelectItemsConverter">
-						<f:selectItem itemLabel="Seleccione una opción"
-							noSelectionOption="true" itemValue="" />
+						<f:selectItem itemLabel="#{solicitudController.paseador.nombre}"
+					 itemValue="#{solicitudController.paseador}" />
 						<f:selectItems value="#{solicitudController.paseadores}"
 							var="paseador" itemLabel="#{paseador.nombre}"
 							itemValue="#{paseador}" />

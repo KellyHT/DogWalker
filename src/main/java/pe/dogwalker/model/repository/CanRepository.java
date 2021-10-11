@@ -3,13 +3,14 @@ package pe.dogwalker.model.repository;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import pe.dogwalker.model.entity.Can;
+import pe.dogwalker.model.entity.Dueno;
+
 
 @Named
 public class CanRepository implements Serializable {
@@ -41,10 +42,10 @@ public class CanRepository implements Serializable {
 		return lista;		
 	}
 
-	public List<Can> listarCanesPorDueno(Long idDueno) throws Exception {
+	public List<Can> listarCanesPorDueno(Dueno dueno) throws Exception {
 		List<Can> lista = new ArrayList<>(); 
-		TypedQuery<Can> query = em.createQuery("SELECT p FROM Can p WHERE p.idDueno LIKE ?1", Can.class);
-		query.setParameter(1, "%" + idDueno + "%");
+		TypedQuery<Can> query = em.createQuery("SELECT c FROM Can c WHERE c.dueno =? 1", Can.class);
+		query.setParameter(1,dueno);
 		lista = query.getResultList();
 		return lista;		
 	}	

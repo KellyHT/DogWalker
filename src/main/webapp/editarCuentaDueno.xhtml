@@ -66,7 +66,7 @@
 					<h:selectOneMenu i="cboDistrito" class="form-control itemselect"
 						value="#{duenoController.distrito}"
 						converter="omnifaces.SelectItemsConverter">
-						<f:selectItem itemLabel="Distrito" itemValue="" />
+							<f:selectItem itemLabel="#{duenoController.dueno.distrito.nombre}" itemValue="#{duenoController.dueno.distrito}" />
 						<f:selectItems value="#{duenoController.distritos}" var="distrito"
 							itemLabel="#{distrito.nombre}" itemValue="#{distrito}" />
 					</h:selectOneMenu>

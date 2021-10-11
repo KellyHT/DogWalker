@@ -14,9 +14,11 @@ import org.primefaces.event.SelectEvent;
 import pe.dogwalker.model.entity.Can;
 import pe.dogwalker.model.entity.Distrito;
 import pe.dogwalker.model.entity.Dueno;
+import pe.dogwalker.model.entity.Solicitud;
 import pe.dogwalker.service.CanService;
 import pe.dogwalker.service.DistritoService;
 import pe.dogwalker.service.DuenoService;
+import pe.dogwalker.service.SolicitudService;
 import pe.dogwalker.util.Message;
 
 @Named
@@ -31,10 +33,17 @@ public class DuenoController implements Serializable{
 	@Inject
 	private DistritoService distritoService;
 	
-	
-	
 	@Inject
 	private CanService canService;
+	
+	@Inject
+	private SolicitudService  solicitudService;
+	
+	@Inject
+	private CanController canController;
+	
+	@Inject
+	private SolicitudController solicitudController;
 	
 	private Dueno dueno;
 	private List<Dueno> duenos;
@@ -48,6 +57,8 @@ public class DuenoController implements Serializable{
 	private Distrito distrito;
 	private List<Distrito> distritos;
 	
+	private List<Solicitud> solicitudes;
+	
 	private String filterName;
 	
 	@PostConstruct
@@ -58,7 +69,7 @@ public class DuenoController implements Serializable{
 		distritos = new ArrayList<Distrito>();
 		
 		canes = new ArrayList<Can>();
-	
+		solicitudes= new ArrayList<Solicitud>();
 		getAllDuenos();
 	}
 	
@@ -89,14 +100,33 @@ public class DuenoController implements Serializable{
 		return "/dueno/list";
 	}
 	public String gestionarCanes() {
-	
-		return "/GestionarCanes";
+		String view ="";
+
+			try {
+				canes = canService.listarCanesPorDueno(dueno);
+				canController.CanesDeDueno(canes);
+				canController.setDueno(dueno);
+				view = "/GestionarCanes";	
+			} catch (Exception e) {
+				Message.messageError("Error al cargar Canes: " + e.getMessage());
+			}
+		return view;
 	}
 	
 	
 	public String solicitudDueno(){
 	
-		return "/GestionarSolicitudesDueno";
+		String view ="";
+
+		try {
+			solicitudes= solicitudService.listarSolicitudesPorDueno(dueno);
+			solicitudController.SolicitudesDeDueno(solicitudes);
+			view = "/GestionarSolicitudesDueno";	
+		} catch (Exception e) {
+			Message.messageError("Error al cargar Canes: " + e.getMessage());
+		}
+	return view;
+
 	}
 	
 	public String saveDueno() {
@@ -175,27 +205,17 @@ public class DuenoController implements Serializable{
 		try {
 			duenos = duenoService.findByCorreoContrasena(this.correo, this.contrasena);	
 			resetForm();
-			if (duenos.isEmpty()) {
-					Message.messageError("Datos incorrectos");	
-			}else {
+			
 				this.dueno = duenos.get(0);
-				Message.messageInfo("Se ha iniciado sesión como Dueño");
+				solicitudController.setDueno(dueno);
 				view = "inicioDueno.xhtml";
-			}
+				
 		} catch (Exception e) {
 			Message.messageError("Error " + e.getMessage());
 		}
 		return view;
-	}
+}
 	
-	
-	public void listarCanesPorDueno() {
-		try {
-			canes = canService.listarCanesPorDueno(dueno.getId());
-		} catch (Exception e) {
-			Message.messageError("Error al cargar Canes: " + e.getMessage());
-		}
-	}
 	
 	public void duenoSelect(SelectEvent e) {
 		this.duenoSelect = (Dueno)e.getObject();
@@ -290,6 +310,36 @@ public class DuenoController implements Serializable{
 
 	public void setCanes(List<Can> canes) {
 		this.canes = canes;
+	}
+
+
+	public CanController getCanController() {
+		return canController;
+	}
+
+
+	public void setCanController(CanController canController) {
+		this.canController = canController;
+	}
+
+
+	public SolicitudController getSolicitudController() {
+		return solicitudController;
+	}
+
+
+	public void setSolicitudController(SolicitudController solicitudController) {
+		this.solicitudController = solicitudController;
+	}
+
+
+	public List<Solicitud> getSolicitudes() {
+		return solicitudes;
+	}
+
+
+	public void setSolicitudes(List<Solicitud> solicitudes) {
+		this.solicitudes = solicitudes;
 	}
 
 	

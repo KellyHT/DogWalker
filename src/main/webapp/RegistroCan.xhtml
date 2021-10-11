@@ -94,7 +94,7 @@
 					<h:selectOneMenu i="cboDuenos" class="form-control itemselect"
 						value="#{canController.dueno}"
 						converter="omnifaces.SelectItemsConverter">
-						<f:selectItem itemLabel="Dueno" itemValue="" />
+						<f:selectItem itemLabel="#{canController.dueno.nombre}" itemValue="#{canController.dueno}" />
 						<f:selectItems value="#{canController.duenos}" var="dueno"
 							itemLabel="#{dueno.nombre}" itemValue="#{dueno}" />
 					</h:selectOneMenu>

@@ -68,7 +68,8 @@
 					<h:selectOneMenu i="cboDistrito" class="form-control itemselect"
 						value="#{paseadorController.distrito}"
 						converter="omnifaces.SelectItemsConverter">
-						<f:selectItem itemLabel="Distrito" itemValue="" />
+						<f:selectItem itemLabel="#{paseadorController.paseador.distrito.nombre}" 
+						itemValue="#{paseadorController.paseador.distrito}" />
 						<f:selectItems value="#{paseadorController.distritos}"
 							var="distrito" itemLabel="#{distrito.nombre}"
 							itemValue="#{distrito}" />

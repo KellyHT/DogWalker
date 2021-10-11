@@ -9,6 +9,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+
+import pe.dogwalker.model.entity.Dueno;
 import pe.dogwalker.model.entity.Solicitud;
 
 @Named
@@ -48,5 +50,11 @@ public class SolicitudRepository implements Serializable {
 		return lista;
 	}
 	
-
+	public List<Solicitud> listarSolicitudesPorDueno(Dueno dueno) throws Exception {
+		List<Solicitud> lista = new ArrayList<>(); 
+		TypedQuery<Solicitud> query = em.createQuery("SELECT s FROM Solicitud s WHERE s.dueno =? 1", Solicitud.class);
+		query.setParameter(1,dueno);
+		lista = query.getResultList();
+		return lista;		
+	}	
 }

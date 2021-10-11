@@ -8,6 +8,7 @@ import javax.inject.Named;
 import javax.transaction.Transactional;
 
 import pe.dogwalker.model.entity.Can;
+import pe.dogwalker.model.entity.Dueno;
 import pe.dogwalker.model.repository.CanRepository;
 
 @Named
@@ -38,8 +39,8 @@ public class CanService implements Serializable {
 	
 	
 	
-	public List<Can> listarCanesPorDueno(Long idDueno)throws Exception{
-		return canRepository.listarCanesPorDueno(idDueno);
+	public List<Can> listarCanesPorDueno(Dueno dueno)throws Exception{
+		return canRepository.listarCanesPorDueno(dueno);
 		
 	}
 	

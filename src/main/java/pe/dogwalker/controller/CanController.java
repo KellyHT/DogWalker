@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
+import org.primefaces.expression.impl.ThisExpressionResolver;
 
 import pe.dogwalker.model.entity.Can;
 import pe.dogwalker.model.entity.Caracter;
@@ -35,6 +36,9 @@ public class CanController implements Serializable{
 	
 	@Inject
 	private CaracterService caracterService;
+	
+	@Inject 
+	private DuenoController duenoController;
 	
 	@Inject
 	private DuenoService duenoService;
@@ -84,7 +88,7 @@ public class CanController implements Serializable{
 		try {
 			this.razas = razaService.findAll();
 			this.caracteres = caracterService.findAll();
-			this.duenos = duenoService.findAll();
+			this.dueno = duenoController.getDueno();
 			resetForm();
 		} catch (Exception e) {
 		}
@@ -122,9 +126,7 @@ public class CanController implements Serializable{
 				Message.messageInfo("Registro Insertado Correctamente");
 				view = "/GestionarCanes";
 			}
-			this.getAllCans();
-			//this.listarCanesPorDueno(dueno.getId());
-			
+			cans = canService.listarCanesPorDueno(dueno);
 			resetForm();
 			
 		} 
@@ -142,6 +144,8 @@ public class CanController implements Serializable{
 			if (this.canSelect != null) 
 			{
 				this.can = canSelect;
+				this.razas = razaService.findAll();
+				this.caracteres = caracterService.findAll();
 				view = "updateCan";
 			}
 			else 
@@ -161,7 +165,7 @@ public class CanController implements Serializable{
 			this.can = canSelect;
 			canService.delete(this.can);
 			Message.messageInfo("Registro Eliminado Correctamente");
-			this.getAllCans();
+			cans = canService.listarCanesPorDueno(dueno);
 			view = "GestionarCanes";
 		} catch (Exception e) {
 			Message.messageError("Error en cano " + e.getMessage());
@@ -169,13 +173,14 @@ public class CanController implements Serializable{
 		return view;
 	}
 	
-
-	
-	public String gestionarCanes() {
+	public String GestionarCanes() throws Exception {
 		
+		cans = canService.listarCanesPorDueno(dueno);
 		return "/GestionarCanes";
 	}
-
+	public void CanesDeDueno(List<Can> Cans) {
+		cans = Cans;
+	}
 	
 	public void canSelect(SelectEvent e) {
 		this.canSelect = (Can)e.getObject();
@@ -319,6 +324,16 @@ public class CanController implements Serializable{
 
 	public void setDuenos(List<Dueno> duenos) {
 		this.duenos = duenos;
+	}
+
+
+	public DuenoController getDuenoController() {
+		return duenoController;
+	}
+
+
+	public void setDuenoController(DuenoController duenoController) {
+		this.duenoController = duenoController;
 	}
 	
 	

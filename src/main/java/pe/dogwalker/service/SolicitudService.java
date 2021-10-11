@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 
+
+import pe.dogwalker.model.entity.Dueno;
 import pe.dogwalker.model.entity.Solicitud;
 import pe.dogwalker.model.repository.SolicitudRepository;
 
@@ -39,6 +41,13 @@ public class SolicitudService implements Serializable {
 	
 	public List<Solicitud> findByName(String name) throws Exception {
 		return solicitudRepository.findByName(name);
+	}
+	
+
+	
+	public List<Solicitud> listarSolicitudesPorDueno(Dueno dueno)throws Exception{
+		return solicitudRepository.listarSolicitudesPorDueno(dueno);
+		
 	}
 	
 }

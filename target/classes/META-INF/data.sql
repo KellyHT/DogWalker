@@ -106,7 +106,11 @@ INSERT INTO dueno(apellido, contrasena, correo, direccion, fechadenacimiento, no
 INSERT INTO dueno(apellido, contrasena, correo, direccion, fechadenacimiento, nombre, iddistrito)VALUES ('Chavez', '159', 'Pablo@gmail.com', 'N°123', '08/10/1987', 'Pablo', 1);
 INSERT INTO dueno(apellido, contrasena, correo, direccion, fechadenacimiento, nombre, iddistrito)VALUES ('Rosales', '753', 'Miriam@gmail.com', 'las hormigas N° 147', '15/04/1989', 'Miriam', 11);
 
-INSERT INTO can(descripcion, fechanacimiento, nombre, idcaracter, iddueno, idraza)	VALUES ('Es un perro muy sociable, le encanta jugar con la pelota', '10/08/2020', 'Pinky', 1, 1, 1);
+INSERT INTO can(descripcion, fechanacimiento, nombre, idcaracter, iddueno, idraza)	VALUES ('Es un perro muy sociable, le encanta jugar con la pelota', '10/08/2020', 'Pinky', 1, 2, 1);
+INSERT INTO can(descripcion, fechanacimiento, nombre, idcaracter, iddueno, idraza)	VALUES ('Es un perro muy sociable, le encanta jugar con la pelota', '10/08/2020', 'Pi', 1, 2, 1);
+INSERT INTO can(descripcion, fechanacimiento, nombre, idcaracter, iddueno, idraza)	VALUES ('Es un perro muy sociable, le encanta jugar con la pelota', '10/08/2020', 'Piky', 1, 2, 1);
+INSERT INTO can(descripcion, fechanacimiento, nombre, idcaracter, iddueno, idraza)	VALUES ('Es un perro muy sociable, le encanta jugar con la pelota', '10/08/2020', 'inky', 1, 2, 1);
+INSERT INTO can(descripcion, fechanacimiento, nombre, idcaracter, iddueno, idraza)	VALUES ('Es un perro muy sociable, le encanta jugar con la pelota', '10/08/2020', 'Pky', 1, 1, 1);
 
 INSERT INTO public.paseador(apellido, biografia, contrasena, correo, direccion, fechadenacimiento, montoservicio, nombre, iddistrito, idpersonalidad)VALUES ('Reyes', 'Soy estudiante de la carrera de Ingeniería de Sistemas de información de la UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '123','marcos@gmail.com', 'Calle 334 las palmas', '10/08/2000', '10.0', 'Marcos', 10, 1);
 INSERT INTO public.paseador(apellido, biografia, contrasena, correo, direccion, fechadenacimiento, montoservicio, nombre, iddistrito, idpersonalidad)VALUES ('Prado', 'Soy estudiante de la carrera de Ingeniería Insdustrial -  UPC, me encantan los animales y en mis tiempo libres me gusta sacarlos a pasear', '123','Sandra@gmail.com', 'Calle 334 las palmas', '10/08/1999', '10.0', 'Sandra', 11, 2);

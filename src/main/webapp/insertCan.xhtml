@@ -81,8 +81,7 @@
 			<p:selectOneMenu id="cboDuenos" required="true" effect="drop"
 				value="#{canController.dueno}"
 				converter="omnifaces.SelectItemsConverter">
-				<f:selectItem itemLabel="Seleccione una opción"
-					noSelectionOption="true" itemValue="" />
+				<f:selectItem itemLabel="#{canController.dueno.nombre}" itemValue="#{canController.dueno}" />
 				<f:selectItems value="#{canController.duenos}" var="dueno"
 					itemLabel="#{dueno.nombre}" itemValue="#{dueno}" />
 			</p:selectOneMenu>
